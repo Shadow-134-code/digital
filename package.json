@@ -1,0 +1,24 @@
+{
+  "name": "hz-digital-solutions",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "next": "15.5.27",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "framer-motion": "12.43.0",
+    "lucide-react": "0.468.0"
+  },
+  "overrides": {
+    "postcss": "8.5.29"
+  }
+}
