@@ -104,3 +104,16 @@ main{padding-top:0}
 .capability-card--featured .capability-link{border-color:#ffffff26}
 @media(max-width:720px){.creative-stage .creative-float{animation-duration:5s}@keyframes showcase-float{0%,100%{translate:0 3px}50%{translate:0 -3px}}}
 @media(prefers-reduced-motion:reduce){.creative-stage .creative-float{animation:none;translate:none;will-change:auto}}
+
+/* Each route mounts a fresh template; navigation stays stationary above it. */
+.page-arrival{animation:page-arrive .48s cubic-bezier(.22,1,.36,1) both}
+.page-arrival .page-hero::before{content:"";display:block;width:48px;height:3px;background:#bd3b30;margin-bottom:22px;transform-origin:left;animation:arrival-accent .65s cubic-bezier(.22,1,.36,1) both}
+.page-arrival .page-eyebrow,.page-arrival .hero-kicker{animation:arrival-rise .55s .06s cubic-bezier(.22,1,.36,1) both}
+.page-arrival .page-hero h1{animation:arrival-title .8s .1s cubic-bezier(.22,1,.36,1) both}
+.page-arrival .page-hero>p,.page-arrival .hero-bottom{animation:arrival-rise .65s .24s cubic-bezier(.22,1,.36,1) both}
+@keyframes page-arrive{from{opacity:.35}to{opacity:1}}
+@keyframes arrival-accent{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes arrival-rise{from{opacity:0;translate:0 18px}to{opacity:1;translate:0 0}}
+@keyframes arrival-title{from{opacity:0;translate:0 32px;clip-path:inset(0 0 100% 0)}to{opacity:1;translate:0 0;clip-path:inset(0 0 -8% 0)}}
+@media(max-width:720px){.page-arrival .page-hero h1{animation-duration:.65s}.page-arrival .page-hero::before{margin-bottom:16px}}
+@media(prefers-reduced-motion:reduce){.page-arrival,.page-arrival .page-hero::before,.page-arrival .page-eyebrow,.page-arrival .hero-kicker,.page-arrival .page-hero h1,.page-arrival .page-hero>p,.page-arrival .hero-bottom{animation:none}}
