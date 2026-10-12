@@ -38,7 +38,7 @@ The optional assets field accepts HTTP/HTTPS links. The form preserves your brie
 
 ## Motion and security
 
-Native wheel/touch scrolling, short section reveals, continuous transform-based ribbons and reduced-motion support. No scroll hijacking, parallax controller or pause button. Logos stay upright.
+Native wheel/touch scrolling, short section reveals, continuous ribbons and gentle staggered floating on the three opening examples. Floating movement continues on mobile and is independent of hover. Reduced-motion preferences disable decorative movement. No scroll hijacking, parallax controller or pause button. Logos stay upright. The third service card remains red on both Home and Services.
 
 Security headers and a fresh script nonce are configured in middleware.js and next.config.mjs. Styles allow inline attributes for animation; scripts do not allow unsafe-inline in production. Keep the normal Next.js server deployment: do not switch to static export without revisiting the nonce configuration. The PostCSS override patches the dependency inherited from Next.js 15. Keep dependencies updated and enable two-factor authentication for GitHub, Vercel and your email account. No website can be guaranteed immune to compromise.
 
