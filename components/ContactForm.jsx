@@ -35,7 +35,8 @@ export default function ContactForm() {
         signal: controller.signal,
         credentials: 'omit',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ ...data, _subject: 'New HZ Digital Solutions website enquiry' }),
+        // Only send intended fields, never arbitrary provider configuration fields.
+        body: JSON.stringify({ name: data.name, email: data.email, company: data.company, projectType: data.projectType, file_link: data.file_link, message: data.message, _honey: data._honey, _subject: 'New HZ Digital Solutions website enquiry' }),
       })
       const result = await response.json()
       if (!response.ok || ![true, 'true'].includes(result.success)) throw new Error('Submission failed')
@@ -52,7 +53,9 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="contact-form" onSubmit={submit} aria-busy={status === 'sending'}>
+    <form className="contact-form" method="post" action="/contact" onSubmit={submit} aria-busy={status === 'sending'}>
+      {/* POST prevents personal details entering the URL if JavaScript fails. */}
+      <noscript><p className="full">Please enable JavaScript to send this form, or email zain@hzdigitalsolutions.com directly.</p></noscript>
       <div className="form-heading full"><span className="section-index">YOUR BRIEF</span><h3>Tell us what you have in mind.</h3><p>A few details are all we need to start the conversation.</p></div>
       <div className="form-trap" aria-hidden="true"><label>Leave this field empty<input name="_honey" tabIndex={-1} autoComplete="off" /></label></div>
       <label>
@@ -83,7 +86,7 @@ export default function ContactForm() {
         <textarea name="message" maxLength={5000} required rows="6" placeholder="Tell us about your idea, audience, deliverables and timing." />
       </label>
       <div className="form-bottom full">
-        <p>We’ll use these details to respond to your enquiry. <Link href="/privacy-policy">Privacy policy</Link></p>
+        <p>FormSubmit processes your details and emails them to us to respond to your enquiry. Please do not include passwords, payment details or sensitive personal information. <Link href="/privacy-policy">Privacy policy</Link></p>
         <button type="submit" className="submit-button" disabled={status === 'sending'}>
           <span>{status === 'sending' ? 'Sending…' : 'Send enquiry'}</span>
           {status === 'sent' ? <CheckCircle2 size={18} /> : <ArrowUpRight size={18} />}
