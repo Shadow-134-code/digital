@@ -91,3 +91,16 @@ html{scroll-behavior:smooth} .nav-wrap{background:#0c0c0cf5;backdrop-filter:none
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.creative-stage .creative-float:hover,.footer-project-button:hover{transform:none}}
 
 main{padding-top:0}
+
+/* Continuous showcase motion uses translate, leaving hover transforms independent. */
+.creative-stage .creative-float{animation:showcase-float 5.8s ease-in-out infinite;will-change:translate}
+.creative-stage .creative-left{animation-delay:-1.8s}
+.creative-stage .creative-center{animation-delay:-3.6s}
+.creative-stage .creative-right{animation-delay:-.6s}
+@keyframes showcase-float{0%,100%{translate:0 5px}50%{translate:0 -5px}}
+.capability-card.capability-card--featured{background:#bd3b30;border-color:#d96050}
+.capability-card.capability-card--featured:hover{background:#c64235;border-color:#ef9a8c}
+.capability-card--featured h3,.capability-card--featured p,.capability-card--featured li,.capability-card--featured .capability-top,.capability-card--featured .capability-link{color:#fff}
+.capability-card--featured .capability-link{border-color:#ffffff26}
+@media(max-width:720px){.creative-stage .creative-float{animation-duration:5s}@keyframes showcase-float{0%,100%{translate:0 3px}50%{translate:0 -3px}}}
+@media(prefers-reduced-motion:reduce){.creative-stage .creative-float{animation:none;translate:none;will-change:auto}}
