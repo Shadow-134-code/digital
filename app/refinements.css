@@ -105,15 +105,26 @@ main{padding-top:0}
 @media(max-width:720px){.creative-stage .creative-float{animation-duration:5s}@keyframes showcase-float{0%,100%{translate:0 3px}50%{translate:0 -3px}}}
 @media(prefers-reduced-motion:reduce){.creative-stage .creative-float{animation:none;translate:none;will-change:auto}}
 
-/* Each route mounts a fresh template; navigation stays stationary above it. */
-.page-arrival{animation:page-arrive .48s cubic-bezier(.22,1,.36,1) both}
-.page-arrival .page-hero::before{content:"";display:block;width:48px;height:3px;background:#bd3b30;margin-bottom:22px;transform-origin:left;animation:arrival-accent .65s cubic-bezier(.22,1,.36,1) both}
-.page-arrival .page-eyebrow,.page-arrival .hero-kicker{animation:arrival-rise .55s .06s cubic-bezier(.22,1,.36,1) both}
-.page-arrival .page-hero h1{animation:arrival-title .8s .1s cubic-bezier(.22,1,.36,1) both}
-.page-arrival .page-hero>p,.page-arrival .hero-bottom{animation:arrival-rise .65s .24s cubic-bezier(.22,1,.36,1) both}
-@keyframes page-arrive{from{opacity:.35}to{opacity:1}}
-@keyframes arrival-accent{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-@keyframes arrival-rise{from{opacity:0;translate:0 18px}to{opacity:1;translate:0 0}}
-@keyframes arrival-title{from{opacity:0;translate:0 32px;clip-path:inset(0 0 100% 0)}to{opacity:1;translate:0 0;clip-path:inset(0 0 -8% 0)}}
-@media(max-width:720px){.page-arrival .page-hero h1{animation-duration:.65s}.page-arrival .page-hero::before{margin-bottom:16px}}
-@media(prefers-reduced-motion:reduce){.page-arrival,.page-arrival .page-hero::before,.page-arrival .page-eyebrow,.page-arrival .hero-kicker,.page-arrival .page-hero h1,.page-arrival .page-hero>p,.page-arrival .hero-bottom{animation:none}}
+/* Route headings and content share a short entrance, followed by local scroll reveals. */
+.page-arrival .page-eyebrow,.page-arrival .hero-kicker{animation:content-arrive .45s both}
+.page-arrival .page-hero h1{animation:content-arrive .6s .07s both}
+.page-arrival .page-hero>p,.page-arrival .hero-bottom{animation:content-arrive .55s .15s both}
+.hz-reveal,.page-arrival .portfolio-nav,.page-arrival .portfolio-category-heading,.page-arrival .partnership-note,.page-arrival .section-action,.page-arrival .process-cta,.page-arrival .creative-stage{animation:content-arrive .55s .32s backwards}
+.page-arrival [data-reveal-state="waiting"]{animation:none;opacity:0;translate:0 20px}
+.page-arrival [data-reveal-state="visible"]{animation:content-arrive .55s var(--reveal-delay,0s) cubic-bezier(.22,1,.36,1) both}
+.page-arrival [data-reveal-state="done"]{animation:none}
+@keyframes content-arrive{from{opacity:0;translate:0 20px}to{opacity:1;translate:0 0}}
+.motion-offscreen .creative-float,.motion-offscreen .service-ribbon-track{animation-play-state:paused!important;will-change:auto}
+/* Larger portrait, with its natural framing preserved at every breakpoint. */
+.founder-grid,.founder-page-block{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:center}
+.founder-art{width:100%;max-height:none;aspect-ratio:3/4}
+.founder-photo{height:100%;object-fit:cover;object-position:center}
+@media(max-width:1050px){.founder-grid,.founder-page-block{grid-template-columns:1fr}.founder-art{max-width:640px;justify-self:center}}
+@media(max-width:720px){.founder-art{max-width:100%;aspect-ratio:3/4}.page-arrival [data-reveal-state="visible"]{animation-duration:.45s}.page-arrival .page-hero h1{animation-duration:.5s}}
+@media(prefers-reduced-motion:reduce){.page-arrival [data-reveal-state]{animation:none!important;opacity:1;translate:none}.hz-reveal{opacity:1;translate:none}}
+
+/* Keep the tall website preview at its top; pan through it only on intentional hover/focus. */
+.creative-stage .creative-left img{object-position:50% 0%;transform:none;transition:object-position 5.5s cubic-bezier(.4,0,.2,1)}
+.creative-stage .creative-left:hover img{object-position:50% 0%;transform:none}
+@media(hover:hover) and (pointer:fine){.creative-stage .creative-left:is(:hover,:focus-visible) img{object-position:50% 100%;transform:none}}
+@media(prefers-reduced-motion:reduce){.creative-stage .creative-left:is(:hover,:focus-visible) img{object-position:50% 0%;transition:none}}

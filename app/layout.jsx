@@ -12,5 +12,5 @@ export const metadata = {
 }
 export default async function RootLayout({children}) {
   await headers() // Per-request rendering supplies a fresh CSP nonce to Next.js scripts.
-  return <html lang="en"><body><a className="skip-link" href="#main-content">Skip to content</a><MotionProvider><Navbar/><div id="main-content">{children}</div><Footer/></MotionProvider></body></html>
+  return <html lang="en" data-scroll-behavior="smooth"><body><a className="skip-link" href="#main-content">Skip to content</a><MotionProvider><Navbar/><div id="main-content">{children}</div><Footer/></MotionProvider></body></html>
 }
