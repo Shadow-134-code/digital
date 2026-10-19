@@ -26,7 +26,6 @@ export default function Template({ children }) {
     let observer
     let loopObserver
     const loops = [...scope.querySelectorAll('.creative-stage, .crossed-strips')]
-    const start = performance.now()
     const show = (el, delay = 0) => {
       el.style.setProperty('--reveal-delay', `${delay}s`)
       el.dataset.revealState = 'visible'
@@ -39,14 +38,17 @@ export default function Template({ children }) {
       loops.forEach(el => el.classList.remove('motion-offscreen'))
     }
     if (!media.matches && 'IntersectionObserver' in window) {
-      elements.forEach(el => { el.dataset.revealState = 'waiting' })
+      elements.forEach(el => {
+        el.dataset.revealKind = el.matches('.founder-art, .creative-stage, .video-card') ? 'media' : 'content'
+        el.dataset.revealState = 'waiting'
+      })
       observer = new IntersectionObserver(entries => {
         const visible = entries.filter(entry => entry.isIntersecting).sort((a,b) => a.boundingClientRect.top - b.boundingClientRect.top || a.boundingClientRect.left - b.boundingClientRect.left)
         visible.forEach((entry, index) => {
-          const entranceDelay = Math.max(0, 320 - (performance.now() - start)) / 1000
-          show(entry.target, entranceDelay + Math.min(index * .055, .165) + Number(entry.target.dataset.revealDelay || 0))
+          // Start as content enters the viewport; avoid a second loading-like pause.
+          show(entry.target, Math.min(index * .045 + Number(entry.target.dataset.revealDelay || 0), .18))
         })
-      }, { threshold: 0, rootMargin: '0px 0px -18px 0px' })
+      }, { threshold: 0, rootMargin: '0px 0px 24px 0px' })
       elements.forEach(el => observer.observe(el))
       loopObserver = new IntersectionObserver(entries => entries.forEach(entry => entry.target.classList.toggle('motion-offscreen', !entry.isIntersecting)), { rootMargin: '80px' })
       loops.forEach(el => loopObserver.observe(el))
@@ -56,7 +58,7 @@ export default function Template({ children }) {
       if (el) { show(el); el.dataset.revealState = 'done' }
     }
     const onEnd = event => {
-      if (event.animationName === 'content-arrive') event.target.dataset.revealState = 'done'
+      if (['content-arrive', 'media-arrive'].includes(event.animationName)) event.target.dataset.revealState = 'done'
     }
     const onPreference = () => { if (media.matches) revealAll() }
     scope.addEventListener('focusin', onFocus)

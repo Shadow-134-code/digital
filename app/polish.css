@@ -1,0 +1,89 @@
+/* Studio finish: warm light, tactile surfaces and short, local motion. */
+:root { --studio-ease: cubic-bezier(.22,1,.36,1); --studio-line: #ffffff16; }
+.hero, .page-hero { position: relative; isolation: isolate; }
+.hero::before, .page-hero::before {
+  content: ''; position: absolute; z-index: -1; pointer-events: none;
+  inset: -80px -12vw 0;
+  background: radial-gradient(ellipse at 8% 12%, #a42d252b, transparent 48%),
+              radial-gradient(ellipse at 92% 60%, #d24c3022, transparent 48%);
+}
+.hero h1 span:nth-child(2), .page-hero h1 span {
+  color: #ee7765;
+  background: linear-gradient(110deg, #ef8b72 5%, #dc493e 55%, #b92f2c 100%);
+  background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-kicker, .page-eyebrow { color: #ed8876; }
+.hero h1 { line-height: 1.16; }
+.hero-bottom { margin-top: 34px; }
+.section-head { border-bottom-color: var(--studio-line); }
+.section-head h2, .founder-copy h2, .footer-invitation h2 { text-wrap: balance; }
+.section-head p, .page-hero p { text-wrap: pretty; }
+.section-muted { background: linear-gradient(145deg, #191210, #11100f 58%); }
+.founder-section { background: radial-gradient(ellipse at 0% 60%, #89322618, transparent 60%), #0d0c0b; }
+.contact-section, .contact-page {
+  background: radial-gradient(ellipse at 0% 0%, #a538292d, transparent 55%),
+              radial-gradient(ellipse at 100% 100%, #7b29221c, transparent 60%), #100e0d;
+}
+.footer { background: radial-gradient(ellipse at 85% 0%, #96302218, transparent 55%), #0e0d0c; }
+.contact-form, .contact-note, .value-card, .capability-card {
+  background-image: linear-gradient(145deg, #ffffff04, transparent 55%);
+  border-color: #6c494036; box-shadow: inset 0 1px #ffffff05;
+}
+.capability-card.capability-card--featured,
+.capability-card.capability-card--featured:hover {
+  background: linear-gradient(145deg, #cc4c3c, #af302b 72%, #962826);
+  border-color: #ed85724d;
+}
+.capability-card h3 { max-width: 26ch; }
+.capability-top svg { transition: translate .35s var(--studio-ease); }
+.capability-card .capability-link { transition: color .2s; }
+.capability-link svg, .arrow-link svg, .footer-project-button svg {
+  transition: transform .3s var(--studio-ease);
+}
+.hero-primary, .submit-button {
+  background: linear-gradient(120deg, #d74e3e, #b9322c);
+  border: 1px solid #ed91784d;
+  box-shadow: inset 0 1px #ffffff18, 0 7px 24px #a32b211c;
+  transition: transform .28s var(--studio-ease), box-shadow .28s, border-color .28s;
+}
+.hero-secondary, .footer-project-button { background: #ffffff03; }
+.creative-stage .creative-float { box-shadow: 0 18px 42px #0004; }
+.creative-stage .creative-caption { background: linear-gradient(transparent, #080706e8); }
+.work-image, .video-card-art, .creative-project a { border: 1px solid #ffffff18; }
+.work-meta { padding-top: 18px; }
+.hz-faq-row { padding-inline: 16px; transition: background-color .25s, border-color .25s; }
+.hz-faq-row.is-open { background: linear-gradient(100deg, #b9403020, #ffffff02); border-bottom-color: #c55b465c; }
+.hz-faq-row h3 button { line-height: 1.55; }
+.contact-form input:focus, .contact-form textarea:focus, .project-trigger:focus-visible {
+  border-color: #df7c66; box-shadow: 0 0 0 3px #d84f3514;
+}
+/* Entrance choreography stays independent from floating/hover transforms. */
+.page-arrival [data-reveal-state="waiting"] { translate: 0 16px; }
+.page-arrival [data-reveal-state="visible"] { animation-duration: .52s; }
+.page-arrival [data-reveal-kind="media"][data-reveal-state="visible"] {
+  animation-name: media-arrive; animation-duration: .65s;
+}
+@keyframes media-arrive { from { opacity: 0; translate: 0 24px; } to { opacity: 1; translate: 0 0; } }
+@media(hover:hover) and (pointer:fine) {
+  .hero-primary:hover, .submit-button:not(:disabled):hover {
+    transform: translateY(-2px); border-color: #f5a88b9c;
+    box-shadow: inset 0 1px #ffffff20, 0 10px 30px #a32b2133;
+  }
+  .capability-card:hover .capability-top svg { translate: 0 -3px; }
+  .capability-link:hover svg, .arrow-link:hover svg, .footer-project-button:hover svg { transform: translate(2px,-2px); }
+}
+/* Mobile bands are parallel, separated, and never pause on hover. */
+@media(max-width:720px) {
+  .crossed-strips { height: 120px; margin-top: 30px; margin-bottom: 8px; display: flex; flex-direction: column; justify-content: center; gap: 20px; background: radial-gradient(ellipse at 50% 50%, #a5382924, transparent 72%); }
+  .crossed-strips .service-ribbon { position: relative; inset: auto; left: 0; width: 100%; height: 34px; flex: 0 0 34px; transform: none; rotate: none; }
+  .service-ribbon-group span { font-size: 10px; letter-spacing: .08em; }
+  .hero::before, .page-hero::before { inset: -50px -18px 0; }
+  .hero-bottom { margin-top: 24px; }
+  .hz-faq-row { padding-inline: 10px; }
+  .page-arrival [data-reveal-state="visible"] { animation-duration: .4s; }
+  .page-arrival [data-reveal-kind="media"][data-reveal-state="visible"] { animation-duration: .48s; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .page-arrival [data-reveal-state] { animation: none!important; opacity: 1; translate: none; }
+  .hero-primary:hover, .submit-button:hover { transform: none; }
+}

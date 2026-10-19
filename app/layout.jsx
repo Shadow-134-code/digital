@@ -5,6 +5,7 @@ import MotionProvider from '../components/MotionProvider'
 import './styles.css'
 import './fonts.css'
 import './refinements.css'
+import './polish.css'
 export const metadata = {
   title: { default: 'HZ Digital Solutions | Design, websites & creative production', template: '%s | HZ Digital Solutions' },
   description: 'Brand identities, WordPress websites, commercial films, AI visuals and creative content. Thoughtfully made by HZ Digital Solutions.',
