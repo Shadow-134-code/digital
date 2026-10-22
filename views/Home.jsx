@@ -18,9 +18,9 @@ export default function Home() {
       <section className="hero container">
         <div className="hero-kicker">HZ DIGITAL SOLUTIONS</div>
         <h1>
-          <motion.span initial={{ y: 36, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: .7, ease: [0.22,1,0.36,1] }}>DISTINCTIVE DESIGN.</motion.span>
-          <motion.span initial={{ y: 36, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: .7, delay: .12, ease: [0.22,1,0.36,1] }}>UNFORGETTABLE VISUALS.</motion.span>
-          <motion.span className="outline" initial={{ y: 36, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: .7, delay: .24, ease: [0.22,1,0.36,1] }}>BUILT FOR YOUR BRAND.</motion.span>
+          <motion.span initial={{ y: 12, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: .45, ease: [0.22,1,0.36,1] }}>DISTINCTIVE DESIGN.</motion.span>
+          <motion.span initial={{ y: 12, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: .45, delay: .05, ease: [0.22,1,0.36,1] }}>UNFORGETTABLE VISUALS.</motion.span>
+          <motion.span className="outline" initial={{ y: 12, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: .45, delay: .1, ease: [0.22,1,0.36,1] }}>BUILT FOR YOUR BRAND.</motion.span>
         </h1>
         <div className="hero-bottom">
           <p>Branding, websites, AI visuals and motion.<br/>Original ideas. A distinctive digital presence.</p>
