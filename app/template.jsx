@@ -44,9 +44,9 @@ export default function Template({ children }) {
       })
       observer = new IntersectionObserver(entries => {
         const visible = entries.filter(entry => entry.isIntersecting).sort((a,b) => a.boundingClientRect.top - b.boundingClientRect.top || a.boundingClientRect.left - b.boundingClientRect.left)
-        visible.forEach((entry, index) => {
-          // Start as content enters the viewport; avoid a second loading-like pause.
-          show(entry.target, Math.min(index * .045 + Number(entry.target.dataset.revealDelay || 0), .18))
+        visible.forEach(entry => {
+          // Reveal related content together rather than running a card-by-card cascade.
+          show(entry.target)
         })
       }, { threshold: 0, rootMargin: '0px 0px 24px 0px' })
       elements.forEach(el => observer.observe(el))
