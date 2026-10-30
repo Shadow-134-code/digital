@@ -33,9 +33,9 @@ export default function Footer() {
 
       <div className="wrap footer-main">
         <div className="footer-brand">
-          <Link href="/" className="brand" aria-label="HZ Digital Solutions home">
-            <img className="brand-mark" src="/hz-mark.webp" alt="" width="38" height="34" loading="lazy" />
-            <span className="brand-name">HZ Digital Solutions</span>
+          <Link href="/" className="brand brand--lg" aria-label="HZ Digital Solutions home">
+            <img className="brand-mark" src="/hz-mark.webp" alt="" width="160" height="142" loading="lazy" />
+            <span className="brand-name">HZ DIGITAL<span>SOLUTIONS</span></span>
           </Link>
           <p>A founder-led studio for brand identity, websites, AI visuals and motion.</p>
         </div>
@@ -60,8 +60,6 @@ export default function Footer() {
         </nav>
         <button type="button" className="to-top" onClick={toTop}>Back to top <ArrowUp size={14} /></button>
       </div>
-
-      <div className="footer-wordmark" aria-hidden="true"><span>HZ Digital</span></div>
     </footer>
   )
 }

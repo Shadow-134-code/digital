@@ -58,8 +58,8 @@ export default function Navbar() {
     <header className="site-header" data-scrolled={bar.scrolled} data-hidden={bar.hidden && !open} data-open={open}>
       <div className="wrap header-inner">
         <Link href="/" className="brand" aria-label="HZ Digital Solutions home">
-          <img className="brand-mark" src="/hz-mark.webp" alt="" width="38" height="34" />
-          <span className="brand-name">HZ Digital Solutions</span>
+          <img className="brand-mark" src="/hz-mark.webp" alt="" width="160" height="142" />
+          <span className="brand-name">HZ DIGITAL<span>SOLUTIONS</span></span>
         </Link>
 
         <nav className="nav-desktop" aria-label="Primary">
