@@ -5,7 +5,7 @@ import Lines from '../components/Lines'
 import Reveal from '../components/Reveal'
 import SectionHead from '../components/SectionHead'
 import SelectedWork from '../components/SelectedWork'
-import ServiceList from '../components/ServiceList'
+import ServiceCards from '../components/ServiceCards'
 import ServiceMarquee from '../components/ServiceMarquee'
 import { ArrowRight, ArrowUpRight } from '../components/Icons'
 
@@ -58,17 +58,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section section-raised" aria-labelledby="services-title">
+      {/* id="services" is the target of the "Services" link in the menu. */}
+      <section className="section section-raised" id="services" aria-labelledby="services-title">
         <div className="wrap">
           <SectionHead
             id="services-title"
             index="02"
-            label="Services"
-            title={['Six disciplines,', <em key="e">one standard.</em>]}
-            copy="From a first logo to a full campaign, every piece is planned to work together."
-            action={<ArrowLink to="/services">All services</ArrowLink>}
+            label="What we do"
+            title={['Good ideas.', <em key="e">Well built.</em>]}
+            copy="From your first brand impression to your next campaign, we connect design, development and creative production."
+            action={<ArrowLink to="/services">Explore all services</ArrowLink>}
           />
-          <ServiceList />
+          <ServiceCards />
         </div>
       </section>
 
