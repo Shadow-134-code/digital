@@ -1,6 +1,7 @@
 "use client";
 import { useState } from 'react'
 import MediaDialog from './MediaDialog'
+import Reveal from './Reveal'
 import { SiteCard, FilmCard, ArtCard } from './WorkCards'
 import { work } from '../data/site'
 import { films } from '../data/commercialFilms'
@@ -30,10 +31,10 @@ export default function WorkGallery() {
 
       {shown.map(({ id, label, copy, items, Card }) => (
         <section key={`${filter}-${id}`} className="work-group" aria-labelledby={`group-${id}`}>
-          <div className="work-group-head">
+          <Reveal className="work-group-head">
             <h2 id={`group-${id}`}>{label}</h2>
             <p>{copy}</p>
-          </div>
+          </Reveal>
           <div className={`work-grid work-grid--${id}`}>
             {items.map((item, i) => <Card key={item.title} item={item} onOpen={setActive} delay={(i % 3) * 0.06} />)}
           </div>
