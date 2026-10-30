@@ -3,15 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ArrowUpRight } from './Icons'
-
-// "Services" jumps to the services cards on the home page (the full /services page is linked from there).
-const items = [
-  ['/work', 'Work'],
-  ['/#services', 'Services'],
-  ['/company', 'Company'],
-  ['/founder', 'Founder'],
-  ['/faqs', 'FAQs'],
-]
+import { contactLink, navLinks as items } from '../data/site'
 
 export default function Navbar() {
   const pathname = usePathname()
@@ -94,7 +86,7 @@ export default function Navbar() {
       <div id="site-menu" className="menu-overlay" inert={!open}>
         <nav className="wrap menu-inner" aria-label="Mobile">
           <ol className="menu-list">
-            {[...items, ['/contact', 'Contact']].map(([to, label], i) => (
+            {[...items, contactLink].map(([to, label], i) => (
               <li key={to} style={{ '--i': i }}>
                 <Link href={to} aria-current={isActive(to) ? 'page' : undefined} onClick={() => setOpen(false)}>
                   <span className="menu-index">0{i + 1}</span>

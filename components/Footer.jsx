@@ -5,8 +5,10 @@ import { ArrowUp, ArrowUpRight, Mail } from './Icons'
 import Lines from './Lines'
 import Reveal from './Reveal'
 import Spotlight from './Spotlight'
+import { contactLink, navLinks } from '../data/site'
 
-const links = [['/work', 'Work'], ['/services', 'Services'], ['/company', 'Company'], ['/founder', 'Founder'], ['/faqs', 'FAQs'], ['/contact', 'Contact']]
+// Same links as the menu (data/site.js), plus Contact.
+const links = [...navLinks, contactLink]
 
 export default function Footer() {
   const pathname = usePathname()
