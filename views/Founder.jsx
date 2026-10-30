@@ -48,7 +48,7 @@ export default function Founder() {
           </div>
           <Reveal className="prose" delay={0.1}>
             <p className="lead">Brand identities, websites, AI visuals, campaign creative, lyric videos and motion — built around your business.</p>
-            <ArrowLink to="/services">Explore the services</ArrowLink>
+            <ArrowLink to="/#services">Explore the services</ArrowLink>
           </Reveal>
         </div>
       </section>
