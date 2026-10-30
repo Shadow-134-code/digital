@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import ProjectSelect from './ProjectSelect'
 import { useId, useRef, useState } from 'react'
-import { ArrowUpRight, CheckCircle2, Link2, Mail } from 'lucide-react'
+import { ArrowUpRight, Check, Mail } from './Icons'
 
 const FALLBACK_ENDPOINT = 'https://formsubmit.co/ajax/zain@hzdigitalsolutions.com'
 
@@ -10,7 +10,7 @@ export default function ContactForm() {
   const inFlight = useRef(false)
   const assetsHint = useId()
   const [emailFallback, setEmailFallback] = useState('mailto:zain@hzdigitalsolutions.com')
-  const [projectType,setProjectType]=useState('Website design')
+  const [projectType, setProjectType] = useState('Website design')
   const [status, setStatus] = useState('idle')
   const [message, setMessage] = useState('')
 
@@ -42,10 +42,10 @@ export default function ContactForm() {
       if (!response.ok || ![true, 'true'].includes(result.success)) throw new Error('Submission failed')
       form.reset(); setProjectType('Website design')
       setStatus('sent')
-      setMessage('Thanks — your enquiry has been submitted.')
+      setMessage('Thank you. Your enquiry has been sent and we’ll reply by email.')
     } catch {
       setStatus('error')
-      setMessage('Your enquiry could not be submitted. Your details are still here—please try again or email your brief below.')
+      setMessage('We couldn’t send your enquiry. Your details are still here, so please try again or email it to us instead.')
     } finally {
       window.clearTimeout(timeout)
       inFlight.current = false
@@ -55,44 +55,48 @@ export default function ContactForm() {
   return (
     <form className="contact-form" method="post" action="/contact" onSubmit={submit} aria-busy={status === 'sending'}>
       {/* POST prevents personal details entering the URL if JavaScript fails. */}
-      <noscript><p className="full">Please enable JavaScript to send this form, or email zain@hzdigitalsolutions.com directly.</p></noscript>
-      <div className="form-heading full"><span className="section-index">YOUR BRIEF</span><h3>Tell us what you have in mind.</h3><p>A few details are all we need to start the conversation.</p></div>
+      <noscript><p className="field-full">Please enable JavaScript to send this form, or email zain@hzdigitalsolutions.com directly.</p></noscript>
       <div className="form-trap" aria-hidden="true"><label>Leave this field empty<input name="_honey" tabIndex={-1} autoComplete="off" /></label></div>
-      <label>
-        <span>Your name</span>
-        <input name="name" maxLength={100} required placeholder="Your name" autoComplete="name" />
+      <label className="field">
+        <span className="field-label">Your name</span>
+        <input name="name" maxLength={100} required placeholder="Full name" autoComplete="name" />
       </label>
-      <label>
-        <span>Your email</span>
+      <label className="field">
+        <span className="field-label">Email</span>
         <input name="email" maxLength={254} required type="email" placeholder="you@company.com" autoComplete="email" />
       </label>
-      <label>
-        <span>Company / brand</span>
-        <input name="company" maxLength={150} placeholder="Company name" />
+      <label className="field">
+        <span className="field-label">Company or brand <small>Optional</small></span>
+        <input name="company" maxLength={150} placeholder="Company name" autoComplete="organization" />
       </label>
-      <ProjectSelect value={projectType} onChange={setProjectType}/>
-      <label className="full asset-field">
-        <span><Link2 size={15} aria-hidden="true" /> Link to your assets <small>(optional)</small></span>
+      <ProjectSelect value={projectType} onChange={setProjectType} />
+      <label className="field field-full">
+        <span className="field-label">Link to your assets <small>Optional</small></span>
         <input name="file_link" type="url" maxLength={2048} placeholder="https://drive.google.com/..." aria-describedby={assetsHint} onInput={e => {
           const input = e.currentTarget
           let valid = !input.value.trim()
           try { valid = ['https:', 'http:'].includes(new URL(input.value.trim()).protocol) } catch { /* Native validity handles incomplete URLs. */ }
           input.setCustomValidity(valid ? '' : 'Please enter a complete https:// or http:// link.')
         }} />
-        <small className="field-help" id={assetsHint}>Share a Google Drive, Dropbox or other link to your logo, brand guidelines, images or brief. For private files, grant viewer access to zain@hzdigitalsolutions.com. You can send assets later, too.</small>
+        <small className="field-help" id={assetsHint}>A Google Drive, Dropbox or similar link to your logo, guidelines, images or brief. For private files, give viewer access to zain@hzdigitalsolutions.com.</small>
       </label>
-      <label className="full">
-        <span>Tell us about your project</span>
-        <textarea name="message" maxLength={5000} required rows="6" placeholder="Tell us about your idea, audience, deliverables and timing." />
+      <label className="field field-full">
+        <span className="field-label">About your project</span>
+        <textarea name="message" maxLength={5000} required rows="6" placeholder="What are you planning, who is it for, and when do you need it?" />
       </label>
-      <div className="form-bottom full">
-        <p>FormSubmit processes your details and emails them to us to respond to your enquiry. Please do not include passwords, payment details or sensitive personal information. <Link href="/privacy-policy">Privacy policy</Link></p>
-        <button type="submit" className="submit-button" disabled={status === 'sending'}>
+      <div className="form-bottom field-full">
+        <p>Your details are sent through FormSubmit to our inbox and used only to reply to you. Please don’t include passwords or payment details. <Link href="/privacy-policy">Privacy policy</Link></p>
+        <button type="submit" className="btn" disabled={status === 'sending'}>
           <span>{status === 'sending' ? 'Sending…' : 'Send enquiry'}</span>
-          {status === 'sent' ? <CheckCircle2 size={18} /> : <ArrowUpRight size={18} />}
+          {status === 'sent' ? <Check size={18} /> : <ArrowUpRight size={18} />}
         </button>
       </div>
-      {message && <div className={`form-feedback full ${status}`}><p role="status" aria-live="polite" className={`form-status ${status}`}>{message}</p>{status === 'error' && <a className="email-fallback" href={emailFallback}><Mail size={16} /> Email this enquiry instead <ArrowUpRight size={16} /><small>Opens your email app</small></a>}</div>}
+      {message && (
+        <div className={`form-feedback field-full is-${status}`}>
+          <p role="status" aria-live="polite">{message}</p>
+          {status === 'error' && <a className="text-link" href={emailFallback}><Mail size={16} /> Email this enquiry instead</a>}
+        </div>
+      )}
     </form>
   )
 }

@@ -1,12 +1,11 @@
-"use client";
-import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
+import { ArrowUpRight } from './Icons'
 
 export default function ArrowLink({ to, children, className = '' }) {
   return (
-    <Link href={to} className={`arrow-link ${className}`}>
+    <Link href={to} className={`text-link ${className}`}>
       <span>{children}</span>
-      <span className="arrow-link__icon"><ArrowUpRight size={17} strokeWidth={1.7} /></span>
+      <ArrowUpRight size={16} />
     </Link>
   )
 }

@@ -1,18 +1,47 @@
 "use client";
 import { useState } from 'react'
-import FilmDialog from './FilmDialog'
+import MediaDialog from './MediaDialog'
+import { Play } from './Icons'
 import { films } from '../data/commercialFilms'
-import { Play } from 'lucide-react'
-export default function CreativeShowcase(){
- const film=films[0]; const [playing,setPlaying]=useState(false);
+import { work } from '../data/site'
+import { thumbnailArtwork } from '../data/thumbnailArtwork'
 
- return <>
- <div className="creative-stage">
-  <div className="creative-stage-label">VISUAL STORIES, MADE TO MOVE</div>
-  <a className="creative-float creative-left" href="/work/harlow.webp" target="_blank" rel="noreferrer" aria-label="View Harlow and Vale website preview"><img src="/work/harlow.webp" alt="Harlow and Vale real estate website design"/><div className="creative-caption"><span>WEBSITE DESIGN</span><strong>Harlow & Vale <span>EXPLORE ↗</span></strong></div></a>
-  <button className="creative-float creative-center" onClick={()=>{setPlaying(true)}} aria-label="Play MYEYERX commercial"><img src="/videos/myeyerx.webp" alt="MYEYERX commercial"/><span className="video-play"><Play fill="currentColor" size={23}/></span><div className="creative-caption"><span>FEATURED COMMERCIAL</span><strong>MYEYERX <span>WATCH FILM ↗</span></strong></div></button>
-  <div className="creative-float creative-right"><img src="/creative/reference/artwork-08.webp" alt="GOODBYES thumbnail artwork"/><div className="creative-caption"><span>THUMBNAIL DESIGN</span><strong>GOODBYES</strong></div></div>
- </div>
- <FilmDialog film={playing?film:null} onClose={()=>setPlaying(false)}/>
- </>
+// Hero collage: one website, one film, one artwork, each opening in the viewer.
+export default function CreativeShowcase() {
+  const [active, setActive] = useState(null)
+  const site = work[0]
+  const film = films[0]
+  const art = thumbnailArtwork.find(a => a.title === 'Goodbyes') || thumbnailArtwork[0]
+
+  return (
+    <>
+      <div className="showcase enter enter-media">
+        <figure className="showcase-item showcase-site">
+          <button type="button" className="showcase-media" data-cursor="View" aria-label={`View the full ${site.title} website design`}
+            onClick={() => setActive({ type: 'image', kind: 'site', src: site.image, title: site.title, category: site.category, alt: `${site.title} full website design` })}>
+            <img src={site.image} alt={`${site.title} website design`} width="768" height="1376" fetchPriority="high" />
+          </button>
+          <figcaption><span className="label">Website</span>{site.title}</figcaption>
+        </figure>
+
+        <figure className="showcase-item showcase-film">
+          <button type="button" className="showcase-media" data-cursor="Play" aria-label={`Play ${film.title} commercial`}
+            onClick={() => setActive({ type: 'video', kind: 'film', src: film.src, poster: film.poster, title: film.title, category: film.category })}>
+            <img src={film.poster} alt={`${film.title} commercial`} width="1280" height="720" fetchPriority="high" />
+            <span className="play-badge play-badge--lg" aria-hidden="true"><Play size={24} /></span>
+          </button>
+          <figcaption><span className="label">Commercial</span>{film.title}</figcaption>
+        </figure>
+
+        <figure className="showcase-item showcase-art">
+          <button type="button" className="showcase-media" data-cursor="View" aria-label={`View ${art.title} artwork`}
+            onClick={() => setActive({ type: 'image', kind: 'art', src: art.image, title: art.title, category: art.category, alt: `${art.title} thumbnail artwork` })}>
+            <img src={art.image} alt={`${art.title} thumbnail artwork`} width="720" height="405" />
+          </button>
+          <figcaption><span className="label">Thumbnail</span>{art.title}</figcaption>
+        </figure>
+      </div>
+      <MediaDialog item={active} onClose={() => setActive(null)} />
+    </>
+  )
 }
