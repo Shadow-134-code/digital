@@ -1,3 +1,14 @@
+// Site links, shared by the top menu, the mobile menu and the footer so they always match.
+// "Services" jumps to the service cards on the home page (the full /services page is linked from there).
+export const navLinks = [
+  ['/work', 'Work'],
+  ['/#services', 'Services'],
+  ['/company', 'Company'],
+  ['/founder', 'Founder'],
+  ['/faqs', 'FAQs'],
+]
+export const contactLink = ['/contact', 'Contact']
+
 export const services = [
   {
     id: 'branding',
