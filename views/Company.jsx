@@ -5,9 +5,9 @@ import Reveal from '../components/Reveal'
 import SectionHead from '../components/SectionHead'
 
 const values = [
-  ['Clarity first', 'We organise information so visitors understand the business quickly and always know where to go next.'],
-  ['Design with purpose', 'Typography, motion and layout strengthen the message instead of competing with it.'],
-  ['Built for real use', 'Responsive work that is practical to manage, browse and grow after launch.'],
+  ['Clarity first', 'Organize information so visitors understand the business quickly and always know where to go next.'],
+  ['Design with purpose', 'Use typography, motion and layout to strengthen the message instead of distracting from it.'],
+  ['Built for real use', 'Create responsive websites that are practical to manage, browse and grow after launch.'],
 ]
 
 const flow = ['Strategy', 'Structure', 'Design', 'Development', 'Polish']
@@ -17,8 +17,8 @@ export default function Company() {
     <main>
       <PageHero
         label="Company"
-        title={['A small studio,', <>built around <em>good work.</em></>]}
-        copy="HZ Digital Solutions brings branding, website development and visual production into one focused studio, so the people shaping your brand also build it."
+        title={['A small digital studio.', <em key="e">Built around good work.</em>]}
+        copy="HZ Digital Solutions connects branding, website development and visual production in one focused creative studio."
       />
 
       <section className="media-strip" aria-label="Examples of our work">
@@ -36,16 +36,16 @@ export default function Company() {
             <h2 id="who-title" className="section-title" data-reveal="mask"><Lines lines={['Clear thinking', <em key="e">before decoration.</em>]} /></h2>
           </div>
           <Reveal className="prose" delay={0.1}>
-            <p className="lead">We create brand identities, websites, AI visuals, commercials, lyric videos, motion design and social graphics for businesses and artists.</p>
-            <p>Every project starts with your audience and the story you want to tell, whether that becomes a cinematic film or a complete online presence.</p>
-            <p>The work combines creative direction, technical thinking and careful execution. We shape the visual language, choose the right formats and refine the details with you.</p>
+            <p className="lead">HZ Digital Solutions creates brand identities, responsive websites, AI visuals, commercial content, lyric videos, motion design and social graphics for businesses and artists.</p>
+            <p>From a cinematic idea to a complete online presence, every project starts with your audience and the story you want to tell.</p>
+            <p>Our work combines creative direction, technical thinking and careful execution. We shape the visual language, choose the right formats and refine the details together.</p>
           </Reveal>
         </div>
       </section>
 
       <section className="section section-raised" aria-labelledby="values-title">
         <div className="wrap">
-          <SectionHead id="values-title" label="What guides the work" title={['Three principles,', <em key="e">every project.</em>]} />
+          <SectionHead id="values-title" label="What guides the work" title={['Three principles carried', <em key="e">through every project.</em>]} />
           <ol className="principles principles--large">
             {values.map(([title, text], i) => (
               <Reveal as="li" key={title} delay={i * 0.08}>
@@ -58,19 +58,35 @@ export default function Company() {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="approach-title">
+      <section className="section founder-teaser" aria-labelledby="approach-title">
+        <div className="wrap founder-teaser-grid">
+          <Reveal variant="media" className="portrait">
+            <img src="/founder.webp" alt="Founder of HZ Digital Solutions in his office" width="1000" height="1333" loading="lazy" />
+            <p className="portrait-caption label">Founder-led<br />digital studio</p>
+          </Reveal>
+          <div className="founder-teaser-copy">
+            <Reveal as="p" className="label">The approach</Reveal>
+            <h2 id="approach-title" className="section-title" data-reveal="mask"><Lines lines={['Thoughtful work.', <em key="e">A personal approach.</em>]} /></h2>
+            <Reveal delay={0.1}>
+              <p className="lead">Good digital work starts with understanding the business behind it. We connect your goals, audience, offer and brand into one coherent creative experience rather than treating design and development as separate exercises.</p>
+              <p>That means fewer handoffs, clearer decisions and more attention to the details that shape the final experience.</p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-raised" aria-labelledby="how-title">
         <div className="wrap split">
           <div>
-            <Reveal as="p" className="label">The approach</Reveal>
-            <h2 id="approach-title" className="section-title" data-reveal="mask"><Lines lines={['One team,', <em key="e">fewer handoffs.</em>]} /></h2>
+            <Reveal as="p" className="label">How we work</Reveal>
+            <h2 id="how-title" className="section-title" data-reveal="mask"><Lines lines={['One connected', <em key="e">process.</em>]} /></h2>
           </div>
           <Reveal className="prose" delay={0.1}>
-            <p className="lead">Good digital work starts with understanding the business behind it.</p>
-            <p>We connect your goals, audience, offer and brand into one coherent experience, rather than treating design and development as separate jobs. That means clearer decisions and more attention on the details people actually notice.</p>
             <ol className="flow" aria-label="Our process">
               {flow.map((step, i) => <li key={step}><span>0{i + 1}</span>{step}</li>)}
             </ol>
-            <ArrowLink to="/services">How we work</ArrowLink>
+            <p className="lead">One connected process from the first conversation through responsive testing and launch.</p>
+            <ArrowLink to="/contact">Tell us what you’re building</ArrowLink>
           </Reveal>
         </div>
       </section>

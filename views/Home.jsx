@@ -7,7 +7,7 @@ import SectionHead from '../components/SectionHead'
 import SelectedWork from '../components/SelectedWork'
 import ServiceList from '../components/ServiceList'
 import ServiceMarquee from '../components/ServiceMarquee'
-import { ArrowRight } from '../components/Icons'
+import { ArrowRight, ArrowUpRight } from '../components/Icons'
 
 const principles = [
   ['Clarity first', 'Visitors should understand what you offer in seconds and always know where to go next.'],
@@ -89,17 +89,21 @@ export default function Home() {
       <section className="section founder-teaser" aria-labelledby="founder-title">
         <div className="wrap founder-teaser-grid">
           <Reveal variant="media" className="portrait">
-            <img src="/founder.webp" alt="Zain-ul-Abidin, founder of HZ Digital Solutions, in his office" width="1000" height="1333" loading="lazy" />
+            <img src="/founder.webp" alt="Founder of HZ Digital Solutions in his office" width="1000" height="1333" loading="lazy" />
+            <p className="portrait-caption label">Founder-led<br />digital studio</p>
           </Reveal>
+          {/* The founder's own wording; keep it as written. */}
           <div className="founder-teaser-copy">
             <Reveal as="p" className="label"><span className="label-index">04</span>The founder</Reveal>
-            <h2 id="founder-title" className="section-title" data-reveal="mask"><Lines lines={['Zain-ul-Abidin', <em key="e">Creative direction.</em>]} /></h2>
+            <h2 id="founder-title" className="section-title" data-reveal="mask"><Lines lines={['Zain-ul-Abidin.', <em key="e">Creative by nature.</em>]} /></h2>
             <Reveal delay={0.1}>
-              <p className="lead">Zain combines creative direction, design and a background in computer science. He has worked with international clients on branding, websites, AI visuals and commercial content.</p>
-              <p>At HZ, that experience comes together in one place: considered creative work, shaped around your business and what it needs next.</p>
+              <p className="founder-role">Creative entrepreneur · Co-founder of HZ &amp; Boltz</p>
+              <p className="lead">Zain brings together creative direction, design and technology to help businesses build a distinctive digital presence.</p>
+              <p>With a background in computer science and experience working with international clients, his work spans branding, website design and development, AI visuals and commercial content.</p>
+              <p>At HZ Digital Solutions, that experience comes together in one place: thoughtful creative work, shaped around your business and its next chapter.</p>
               <div className="link-row">
                 <ArrowLink to="/founder">Meet the founder</ArrowLink>
-                <a className="text-link" href="https://www.linkedin.com/in/zain-ul-abidin-7b5b76190/" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span></a>
+                <a className="text-link" href="https://www.linkedin.com/in/zain-ul-abidin-7b5b76190/" target="_blank" rel="noopener noreferrer"><span>Connect on LinkedIn</span><ArrowUpRight size={16} /></a>
               </div>
             </Reveal>
           </div>
