@@ -1,21 +1,41 @@
-"use client";
-import { ArrowUpRight, Mail, FolderOpen, MessageSquare } from 'lucide-react'
-import PageHero from '../components/PageHero'
 import ContactForm from '../components/ContactForm'
-import Reveal from '../components/Reveal'
+import PageHero from '../components/PageHero'
+import { ArrowUpRight } from '../components/Icons'
 
 export default function Contact() {
-  return <main>
-    <PageHero eyebrow="LET’S TALK" title={<>YOUR NEXT PROJECT.<br/><span>LET’S MAKE IT HAPPEN.</span></>} copy="A website, a brand, a campaign or something entirely new. Tell us where you want to go." />
-    <section className="page-section contact-page">
-      <div className="container contact-studio-grid">
-        <Reveal><ContactForm /></Reveal>
-        <aside className="contact-notes" aria-label="Project enquiry guidance">
-          <Reveal className="contact-note"><Mail size={21} aria-hidden="true" /><h2>Prefer email?</h2><p>Send your brief directly. We’ll use your details to discuss your project.</p><a href="mailto:zain@hzdigitalsolutions.com">zain@hzdigitalsolutions.com <ArrowUpRight size={16} /></a></Reveal>
-          <Reveal className="contact-note" delay={.04}><FolderOpen size={21} aria-hidden="true" /><h2>A useful starting point</h2><ul><li>Your business and audience</li><li>The work you need and where it will be used</li><li>Brand assets or examples you like</li><li>Your preferred timing</li></ul><p>No finished brief yet? Start with your idea.</p></Reveal>
-          <Reveal className="contact-note" delay={.08}><MessageSquare size={21} aria-hidden="true" /><h2>What happens next</h2><p>We review your enquiry, clarify the details and agree the scope before work begins.</p><div className="contact-disciplines"><span>Web & WordPress</span><span>Branding</span><span>AI visuals</span><span>Video & motion</span><span>Campaigns</span></div></Reveal>
-        </aside>
-      </div>
-    </section>
-  </main>
+  return (
+    <main>
+      <PageHero
+        label="Contact"
+        title={['Tell us about', <>your <em>project.</em></>]}
+        copy="A website, a brand, a campaign or something new. Share the essentials and we’ll take it from there."
+      />
+      <section className="section section-tight" aria-label="Project enquiry">
+        <div className="wrap contact-grid">
+          <div className="contact-form-wrap enter enter-late">
+            <ContactForm />
+          </div>
+          <aside className="contact-notes enter enter-late" aria-label="Before you write">
+            <div className="note-block">
+              <p className="label">Prefer email?</p>
+              <a className="contact-mail" href="mailto:zain@hzdigitalsolutions.com">zain@hzdigitalsolutions.com <ArrowUpRight size={16} /></a>
+            </div>
+            <div className="note-block">
+              <p className="label">Useful to include</p>
+              <ul>
+                <li>What your business does and who it’s for</li>
+                <li>The work you need and where it will be used</li>
+                <li>Brand assets or examples you like</li>
+                <li>Your ideal timing</li>
+              </ul>
+            </div>
+            <div className="note-block">
+              <p className="label">What happens next</p>
+              <p>We read your enquiry, ask anything we need to clarify, then send a clear scope and quote before any work begins.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+  )
 }

@@ -1,14 +1,32 @@
-"use client";
-import PageHero from '../components/PageHero'
-import FaqList from '../components/FaqList'
-import Reveal from '../components/Reveal'
 import ArrowLink from '../components/ArrowLink'
+import FaqList from '../components/FaqList'
+import PageHero from '../components/PageHero'
+import { faqGroups } from '../data/site'
 
 export default function Faqs() {
-  return <main>
-    <PageHero eyebrow="FAQs" title={<>A FEW GOOD<br/><span>QUESTIONS.</span></>} copy="Answers about branding, websites, AI visuals, advertising, motion design and creative content." />
-    <section className="page-section container narrow"><Reveal><FaqList /></Reveal></section>
-    <section className="page-section section-muted"><div className="container two-col"><Reveal><div><div className="section-index">BEFORE WE START</div><h2>What makes a useful first message?</h2></div></Reveal><Reveal><div className="rich-copy"><p>Tell us what your business does, what you want to achieve, which services you need, any existing brand assets, and your intended audience or channels.</p><p>You do not need a complete specification. A clear description of the goal is enough to begin shaping the scope.</p></div></Reveal></div></section>
-    <section className="page-section container statement-block"><Reveal><div className="section-index">STILL HAVE A QUESTION?</div><h2>Send us the details. We’ll help you work out the right scope.</h2><ArrowLink to="/contact">Contact HZ Digital Solutions</ArrowLink></Reveal></section>
-  </main>
+  return (
+    <main>
+      <PageHero
+        label="FAQs"
+        title={['A few good', <em key="e">questions.</em>]}
+        copy="Straight answers about pricing, timelines, branding, websites, video and how we work together."
+      />
+      <section className="section section-tight" aria-label="Frequently asked questions">
+        <div className="wrap faq-layout">
+          <aside className="faq-aside">
+            <nav aria-label="FAQ topics">
+              <p className="label">Topics</p>
+              <ul>{faqGroups.map(g => <li key={g.id}><a href={`#${g.id}`}>{g.label}</a></li>)}</ul>
+            </nav>
+            <div className="faq-help">
+              <p className="label">Still unsure?</p>
+              <p>Send us a short note about your business, your goal and the service you need. A full brief isn’t required.</p>
+              <ArrowLink to="/contact">Ask us directly</ArrowLink>
+            </div>
+          </aside>
+          <FaqList />
+        </div>
+      </section>
+    </main>
+  )
 }

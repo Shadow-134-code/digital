@@ -1,89 +1,110 @@
-"use client";
-import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
-
 import ArrowLink from '../components/ArrowLink'
+import CreativeShowcase from '../components/CreativeShowcase'
+import Lines from '../components/Lines'
 import Reveal from '../components/Reveal'
 import SectionHead from '../components/SectionHead'
-import FaqList from '../components/FaqList'
-import ContactForm from '../components/ContactForm'
-import CreativeShowcase from '../components/CreativeShowcase'
+import SelectedWork from '../components/SelectedWork'
+import ServiceList from '../components/ServiceList'
 import ServiceMarquee from '../components/ServiceMarquee'
-import ServiceCards from '../components/ServiceCards'
-import PortfolioSections from '../components/PortfolioSections'
+import { ArrowRight } from '../components/Icons'
+
+const principles = [
+  ['Clarity first', 'Visitors should understand what you offer in seconds and always know where to go next.'],
+  ['Design with purpose', 'Type, motion and layout are there to carry the message, never to distract from it.'],
+  ['Built for real use', 'Fast, responsive and easy for your team to manage long after launch.'],
+]
 
 export default function Home() {
   return (
     <main>
-      <section className="hero container">
-        <div className="hero-kicker">HZ DIGITAL SOLUTIONS</div>
-        <h1>
-          <span>DISTINCTIVE DESIGN.</span>
-          <span>UNFORGETTABLE VISUALS.</span>
-          <span className="outline">BUILT FOR YOUR BRAND.</span>
-        </h1>
-        <div className="hero-bottom">
-          <p>Branding, websites, AI visuals and motion.<br/>Original ideas. A distinctive digital presence.</p>
-          <div className="hero-actions"><Link href="/work" className="hero-primary">Explore our work <span aria-hidden="true">↘</span></Link><Link href="/contact" className="hero-secondary">Build with HZ <span aria-hidden="true">↗</span></Link></div>
+      <section className="home-hero">
+        <div className="hero-glow" aria-hidden="true" />
+        <div className="wrap">
+          <p className="label enter">Creative studio for brands, web and film</p>
+          <h1 className="display enter-lines">
+            <Lines lines={['Brands, websites', 'and films people', <em key="e">remember.</em>]} />
+          </h1>
+          <div className="hero-foot enter enter-late">
+            <p>HZ Digital Solutions is a founder-led studio for brand identity, website design and development, AI visuals and motion. One partner from the first idea to launch day.</p>
+            <div className="hero-actions">
+              <Link href="/work" className="btn">See our work <ArrowRight size={18} /></Link>
+              <ArrowLink to="/contact">Start a project</ArrowLink>
+            </div>
+          </div>
         </div>
-
-        <CreativeShowcase />
+        <div className="wrap">
+          <CreativeShowcase />
+        </div>
         <ServiceMarquee />
       </section>
 
-      <section className="section container" id="company">
-        <Reveal><SectionHead eyebrow="THE COMPANY" title="A digital presence that feels like you." copy="HZ Digital Solutions brings strategy, design and development together to help businesses show up with confidence online." /></Reveal>
-        <div className="company-grid">
-          <Reveal className="company-copy"><p>From a distinctive identity to a cinematic visual, a commercial or a complete WordPress experience, we connect clear communication with considered craft. One creative partner across the moments that shape how people see your brand.</p><ArrowLink to="/company">More about HZ</ArrowLink></Reveal>
-          <div className="principles">
-            {['Clarity first', 'Design with purpose', 'Built for real use'].map((x,i) => <Reveal delay={i*.08} key={x} className="principle"><span>0{i+1}</span><strong>{x}</strong></Reveal>)}
-          </div>
+      <section className="section studio" aria-labelledby="studio-title">
+        <div className="wrap">
+          <Reveal as="p" className="label"><span className="label-index">01</span>The studio</Reveal>
+          <h2 id="studio-title" className="statement" data-reveal="mask">
+            <Lines lines={[<>We bring strategy, design, development and production together, <span className="muted">so your identity, website and campaigns feel like one brand instead of five different suppliers.</span></>]} />
+          </h2>
+          <ol className="principles">
+            {principles.map(([title, text], i) => (
+              <Reveal as="li" key={title} delay={i * 0.08}>
+                <span className="principle-num">0{i + 1}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </Reveal>
+            ))}
+          </ol>
+          <Reveal className="section-foot"><ArrowLink to="/company">About the studio</ArrowLink></Reveal>
         </div>
       </section>
 
-      <section className="section section-muted" id="services">
-        <div className="container">
-          <Reveal><SectionHead eyebrow="WHAT WE DO" title="Good ideas. Well built." copy="From your first brand impression to your next campaign, we connect design, development and creative production." /></Reveal>
-          <ServiceCards />
-          <div className="section-action"><ArrowLink to="/services">Explore all services</ArrowLink></div>
+      <section className="section section-raised" aria-labelledby="services-title">
+        <div className="wrap">
+          <SectionHead
+            id="services-title"
+            index="02"
+            label="Services"
+            title={['Six disciplines,', <em key="e">one standard.</em>]}
+            copy="From a first logo to a full campaign, every piece is planned to work together."
+            action={<ArrowLink to="/services">All services</ArrowLink>}
+          />
+          <ServiceList />
         </div>
       </section>
 
-      <section className="section container" id="work">
-        <Reveal><SectionHead eyebrow="THE PORTFOLIO" title="Visual stories. Digital experiences." copy="Commercial films, original thumbnail artwork and selected website designs." /></Reveal>
-        <PortfolioSections />
-        <div className="section-action"><ArrowLink to="/work">View all work</ArrowLink></div>
-      </section>
-
-      <section className="section founder-section" id="founder">
-        <div className="container founder-grid">
-          <Reveal className="founder-art"><img className="founder-photo" src="/founder.webp" alt="Founder of HZ Digital Solutions in his office" loading="lazy" /><div className="founder-caption">FOUNDER-LED<br/>DIGITAL STUDIO</div></Reveal>
-          <Reveal className="founder-copy"><div className="section-index">THE FOUNDER</div><h2>Zain-ul-Abidin.<br/>Creative by nature.</h2><p>Creative entrepreneur · Co-founder of HZ & Boltz</p><p>Zain brings together creative direction, design and technology to help businesses build a distinctive digital presence.</p><p>With a background in computer science and experience working with international clients, his work spans branding, website design and development, AI visuals and commercial content.</p><p>At HZ Digital Solutions, that experience comes together in one place: thoughtful creative work, shaped around your business and its next chapter.</p><ArrowLink to="/founder">Meet the founder</ArrowLink><a className="linkedin-link" href="https://www.linkedin.com/in/zain-ul-abidin-7b5b76190/" target="_blank" rel="noreferrer">Connect on LinkedIn ↗</a></Reveal>
+      <section className="section" aria-labelledby="work-title">
+        <div className="wrap">
+          <SectionHead
+            id="work-title"
+            index="03"
+            label="Selected work"
+            title={['A few recent', <em key="e">projects.</em>]}
+            copy="Websites, commercials and cover artwork. The full portfolio has more of each."
+            action={<ArrowLink to="/work">View all work</ArrowLink>}
+          />
+          <SelectedWork />
         </div>
       </section>
 
-      <section className="section container" id="faqs">
-        <Reveal><SectionHead eyebrow="A FEW GOOD QUESTIONS" title="Your questions, answered." copy="A little clarity before we start." /></Reveal>
-        <Reveal><FaqList compact /></Reveal>
-        <div className="section-action"><ArrowLink to="/faqs">See all FAQs</ArrowLink></div>
-      </section>
-
-      <section className="section contact-section" id="contact">
-        <div className="container">
-          <Reveal className="contact-heading-wrap">
-            <div className="section-index light">LET’S CONNECT</div>
-            <div className="contact-heading-grid">
-              <h2 className="contact-title">YOUR NEXT CHAPTER<br/><span>STARTS HERE.</span></h2>
-              <p className="contact-heading-copy">Have an idea, an old website that needs a rethink, or a business ready for a stronger digital presence? Tell us what you need and we’ll help shape the right next step.</p>
-            </div>
+      <section className="section founder-teaser" aria-labelledby="founder-title">
+        <div className="wrap founder-teaser-grid">
+          <Reveal variant="media" className="portrait">
+            <img src="/founder.webp" alt="Zain-ul-Abidin, founder of HZ Digital Solutions, in his office" width="1000" height="1333" loading="lazy" />
           </Reveal>
-          <div className="contact-grid">
-            <Reveal className="contact-intro"><p>Start with the essentials. We can work through the structure, design and build together.</p><a href="mailto:zain@hzdigitalsolutions.com">zain@hzdigitalsolutions.com <ArrowUpRight size={16}/></a></Reveal>
-            <Reveal><ContactForm /></Reveal>
+          <div className="founder-teaser-copy">
+            <Reveal as="p" className="label"><span className="label-index">04</span>The founder</Reveal>
+            <h2 id="founder-title" className="section-title" data-reveal="mask"><Lines lines={['Zain-ul-Abidin', <em key="e">Creative direction.</em>]} /></h2>
+            <Reveal delay={0.1}>
+              <p className="lead">Zain combines creative direction, design and a background in computer science. He has worked with international clients on branding, websites, AI visuals and commercial content.</p>
+              <p>At HZ, that experience comes together in one place: considered creative work, shaped around your business and what it needs next.</p>
+              <div className="link-row">
+                <ArrowLink to="/founder">Meet the founder</ArrowLink>
+                <a className="text-link" href="https://www.linkedin.com/in/zain-ul-abidin-7b5b76190/" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span></a>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
     </main>
   )
 }
-
