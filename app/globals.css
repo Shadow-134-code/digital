@@ -18,11 +18,12 @@
   --accent-text: #ef6b55;     /* accent for small text and italics: meets contrast on --bg */
   --on-accent: #fff8f4;
 
-  /* --font-* are provided by next/font in app/layout.jsx */
-  --ff-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  /* One typeface (Geist) for the whole site; --font-* come from next/font in app/layout.jsx.
+     Manrope is used only for the HZ wordmark beside the logo. */
   --ff-sans: var(--font-sans), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --ff-mono: var(--font-mono), ui-monospace, 'SFMono-Regular', Menlo, monospace;
-  --ff-serif: var(--font-serif), Georgia, serif;
+  --ff-display: var(--ff-sans);
+  --ff-mono: var(--ff-sans);
+  --ff-brand: var(--font-brand), var(--ff-sans);
 
   --max: 1320px;
   --gutter: clamp(20px, 4vw, 56px);
@@ -93,32 +94,25 @@ h1, h2, h3, h4, p, figure { margin: 0; }
   letter-spacing: -0.035em;
   text-wrap: balance;
 }
-.display { font-size: clamp(3rem, 8.4vw, 8.25rem); line-height: 0.92; letter-spacing: -0.05em; }
-.page-title { font-size: clamp(2.7rem, 6.6vw, 6.4rem); line-height: 0.95; letter-spacing: -0.045em; }
-.section-title { font-size: clamp(2.1rem, 4.4vw, 4rem); line-height: 1; }
-.statement { font-size: clamp(1.75rem, 3.6vw, 3.25rem); line-height: 1.1; font-weight: 500; letter-spacing: -0.03em; max-width: 22ch; }
+.display { font-size: clamp(2.9rem, 6.8vw, 6.4rem); line-height: 0.98; letter-spacing: -0.045em; }
+.page-title { font-size: clamp(2.5rem, 5.4vw, 5.2rem); line-height: 1; letter-spacing: -0.04em; }
+.section-title { font-size: clamp(2rem, 3.8vw, 3.4rem); line-height: 1.05; }
+.statement { font-size: clamp(1.6rem, 3vw, 2.7rem); line-height: 1.18; font-weight: 500; letter-spacing: -0.03em; max-width: 24ch; }
 .statement .muted { color: var(--subtle); }
 
-/* Serif italic accent: one or two words per heading, never whole sentences */
-em {
-  font-family: var(--ff-serif);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  color: var(--accent-text);
-  padding-right: 0.06em;
-}
-.display em, .page-title em { font-size: 1.04em; }
+/* Second line of a heading: same typeface, quieter colour. */
+em { font-style: normal; color: var(--muted); }
 
 .label {
   display: inline-flex; align-items: center; gap: 12px;
-  font-family: var(--ff-mono);
-  font-size: 0.75rem;
+  font-family: var(--ff-sans);
+  font-size: 0.74rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
 }
+.label-index, .principle-num, .service-num, .step-num, .legal-num, .menu-index, .flow span { font-variant-numeric: tabular-nums; }
 .label::before { content: ''; width: 18px; height: 1px; background: var(--accent); }
 .label-index { color: var(--accent-text); }
 .label:has(.label-index)::before { display: none; }
@@ -186,10 +180,15 @@ p { color: var(--muted); text-wrap: pretty; }
 .site-header[data-open="true"] { background: var(--bg); border-bottom-color: transparent; }
 .header-inner { height: 100%; display: flex; align-items: center; gap: 28px; }
 
-.brand { display: inline-flex; align-items: center; gap: 12px; margin-right: auto; }
-.brand-mark { width: 34px; height: auto; transition: rotate .6s var(--ease-out); }
-.brand:hover .brand-mark { rotate: -8deg; }
-.brand-name { font-family: var(--ff-display); font-weight: 600; font-size: 1.02rem; letter-spacing: -0.02em; color: var(--text); }
+/* Logo: original HZ sizing and lettering. The mark never moves; only the name changes colour on hover. */
+.brand { display: inline-flex; align-items: center; gap: 13px; margin-right: auto; line-height: 1; }
+.brand-mark { width: auto; height: 48px; flex: none; }
+.brand-name { font-family: var(--ff-brand); font-weight: 800; font-size: 18px; letter-spacing: .025em; line-height: 1.1; color: var(--text); transition: color .3s ease; }
+.brand-name span { display: block; margin-top: 5px; font-size: 9px; font-weight: 500; letter-spacing: .23em; color: #c6bdb9; }
+.brand:hover .brand-name, .brand:focus-visible .brand-name { color: #e37868; }
+.brand--lg .brand-mark { height: 60px; }
+.brand--lg .brand-name { font-size: 21px; }
+.brand--lg .brand-name span { font-size: 11px; margin-top: 7px; }
 
 .nav-desktop ul { display: flex; gap: 6px; }
 .nav-link {
@@ -314,10 +313,6 @@ p { color: var(--muted); text-wrap: pretty; }
 .showcase-film .showcase-media { aspect-ratio: 16 / 10.4; }
 .showcase-art { margin-top: 128px; }
 .showcase-art .showcase-media { aspect-ratio: 16 / 10; }
-.showcase-site, .showcase-film, .showcase-art { animation: drift 9s var(--ease-in-out) infinite alternate; }
-.showcase-film { animation-delay: -3s; }
-.showcase-art { animation-delay: -6s; }
-@keyframes drift { from { translate: 0 0; } to { translate: 0 -10px; } }
 
 .play-badge {
   position: absolute; left: 50%; top: 50%; width: 58px; height: 58px; margin: -29px 0 0 -29px;
@@ -530,18 +525,14 @@ button:hover > .play-badge { scale: 1.08; background: var(--accent); border-colo
 .founder-hero-copy .page-title { margin-top: 26px; }
 .founder-hero-copy .enter-late { display: grid; gap: 14px; margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line); }
 .founder-hero-copy .page-intro { grid-column: auto; }
-.founder-role { font-family: var(--ff-mono); font-size: 0.8rem; letter-spacing: 0.04em; color: var(--text); }
+.founder-role { font-size: 1.02rem; font-weight: 500; color: var(--text); }
+.founder-teaser-copy .founder-role { margin-bottom: 4px; }
+.portrait-caption { position: absolute; left: 16px; bottom: 16px; padding: 8px 12px; border-radius: 6px; line-height: 1.5; background: rgba(13, 12, 11, 0.7); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: var(--text); }
+.portrait-caption::before { display: none; }
 .founder-hero-portrait { aspect-ratio: 4 / 5; }
-.founder-hero-portrait figcaption { position: absolute; left: 16px; bottom: 16px; padding: 8px 12px; border-radius: 6px; background: rgba(13, 12, 11, 0.7); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: var(--text); }
+.founder-hero-portrait figcaption { position: absolute; left: 16px; bottom: 16px; padding: 8px 12px; border-radius: 6px; line-height: 1.5; background: rgba(13, 12, 11, 0.7); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: var(--text); }
 .founder-hero-portrait figcaption::before { display: none; }
 
-.focus-list { display: flex; flex-wrap: wrap; gap: 12px 14px; margin-top: clamp(40px, 5vw, 64px); }
-.focus-list li {
-  font-family: var(--ff-display); font-weight: 500; font-size: clamp(1.3rem, 2.6vw, 2.2rem); letter-spacing: -0.03em;
-  padding: 10px 24px 12px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--text);
-  transition: background-color .3s ease, border-color .3s ease, color .3s ease;
-}
-.focus-list li:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 
 /* ---------- FAQ ---------- */
 .faq-layout { display: grid; grid-template-columns: minmax(220px, 0.42fr) minmax(0, 1fr); gap: clamp(40px, 7vw, 120px); align-items: start; }
@@ -674,14 +665,6 @@ button:hover > .play-badge { scale: 1.08; background: var(--accent); border-colo
 .footer-bottom a, .to-top { color: var(--muted); transition: color .2s ease; }
 .footer-bottom a:hover, .to-top:hover { color: var(--text); }
 .to-top { display: inline-flex; align-items: center; gap: 8px; }
-.footer-wordmark { overflow: hidden; line-height: 0.74; margin-top: 8px; pointer-events: none; user-select: none; }
-.footer-wordmark span {
-  display: block; text-align: center; white-space: nowrap;
-  font-family: var(--ff-display); font-weight: 700; letter-spacing: -0.06em;
-  font-size: 19.5vw; color: transparent;
-  -webkit-text-stroke: 1px rgba(242, 236, 228, 0.12);
-  translate: 0 18%;
-}
 
 /* ---------- Dialog ---------- */
 .media-dialog {
@@ -760,6 +743,12 @@ button:hover > .play-badge { scale: 1.08; background: var(--accent); border-colo
 
 @media (max-width: 640px) {
   body { font-size: 1rem; }
+  .brand-mark { height: 38px; }
+  .brand-name { font-size: 15px; }
+  .brand-name span { font-size: 8px; margin-top: 4px; }
+  .brand--lg .brand-mark { height: 48px; }
+  .brand--lg .brand-name { font-size: 18px; }
+  .brand--lg .brand-name span { font-size: 9px; margin-top: 5px; }
   .display { font-size: clamp(2.7rem, 13.4vw, 4.2rem); }
   .page-title { font-size: clamp(2.5rem, 12vw, 3.6rem); }
   .hero-actions { gap: 22px; }

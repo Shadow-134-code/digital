@@ -1,15 +1,14 @@
 import { headers } from 'next/headers'
-import { Bricolage_Grotesque, Geist, Geist_Mono, Instrument_Serif } from 'next/font/google'
+import { Geist, Manrope } from 'next/font/google'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import CursorBadge from '../components/CursorBadge'
 import './globals.css'
 
 // Fonts are downloaded at build time and served from this site (no external requests).
-const display = Bricolage_Grotesque({ subsets: ['latin'], variable: '--font-display', display: 'swap', axes: ['opsz'] })
+// Geist for the whole site; Manrope only for the HZ wordmark next to the logo (the original brand lettering).
 const sans = Geist({ subsets: ['latin'], variable: '--font-sans', display: 'swap' })
-const mono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' })
-const serif = Instrument_Serif({ subsets: ['latin'], variable: '--font-serif', display: 'swap', weight: '400', style: 'italic' })
+const brand = Manrope({ subsets: ['latin'], variable: '--font-brand', display: 'swap', weight: ['500', '800'] })
 
 export const metadata = {
   title: {
@@ -33,7 +32,7 @@ export const viewport = {
 export default async function RootLayout({ children }) {
   await headers() // Per-request rendering supplies a fresh CSP nonce to Next.js scripts.
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${display.variable} ${sans.variable} ${mono.variable} ${serif.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${sans.variable} ${brand.variable}`}>
       <body>
         <a className="skip-link" href="#main-content">Skip to content</a>
         <Navbar />
