@@ -85,8 +85,9 @@ export default function Navbar() {
 
       <div id="site-menu" className="menu-overlay" inert={!open}>
         <nav className="wrap menu-inner" aria-label="Mobile">
+          {/* Same links as the desktop bar; "Start a project" sits below as its own block, as it does on desktop. */}
           <ol className="menu-list">
-            {[...items, contactLink].map(([to, label], i) => (
+            {items.map(([to, label], i) => (
               <li key={to} style={{ '--i': i }}>
                 <Link href={to} aria-current={isActive(to) ? 'page' : undefined} onClick={() => setOpen(false)}>
                   <span className="menu-index">0{i + 1}</span>
@@ -95,6 +96,13 @@ export default function Navbar() {
               </li>
             ))}
           </ol>
+          <div className="menu-cta" style={{ '--i': items.length }}>
+            <p className="label">Start a project</p>
+            <p className="menu-cta-title">Have something in mind?</p>
+            <Link href={contactLink[0]} className="btn" aria-current={pathname === contactLink[0] ? 'page' : undefined} onClick={() => setOpen(false)}>
+              Start a project <ArrowUpRight size={18} />
+            </Link>
+          </div>
           <div className="menu-foot">
             <a href="mailto:zain@hzdigitalsolutions.com">zain@hzdigitalsolutions.com</a>
             <a href="https://www.linkedin.com/in/zain-ul-abidin-7b5b76190/" target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={14} /></a>
