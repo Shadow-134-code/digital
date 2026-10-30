@@ -1,92 +1,98 @@
-export const services = [{"number": "01", "title": "Branding & visual identity", "text": "A clear, distinctive identity that gives your business a consistent voice and visual direction.", "tags": ["Logo design", "Brand identity", "Brand guidelines", "Visual systems"], "featured": false}, {"number": "02", "title": "Website design & development", "text": "Thoughtfully designed websites that make your business easy to understand and easy to explore.", "tags": ["Business websites", "Landing pages", "UI / UX design", "Responsive development", "WordPress", "WooCommerce", "Performance & SEO"], "featured": false}, {"number": "03", "title": "AI visuals & creative production", "text": "Imaginative worlds, compelling characters and original visual stories, shaped around your brand.", "tags": ["AI video production", "Cinematic visuals", "Concept art", "AI imagery"], "featured": true}, {"number": "04", "title": "Advertising & campaign creative", "text": "Brand and product stories built for the channels and audiences you want to reach.", "tags": ["AI video ads", "Product campaigns", "UGC-style videos", "Real estate creative"], "featured": false}, {"number": "05", "title": "Motion design & video editing", "text": "Purposeful movement, sharp editing and a strong visual rhythm for every message.", "tags": ["Lyric videos", "Logo animation", "Explainer videos", "Promos & trailers", "Post-production"], "featured": false}, {"number": "06", "title": "Social content & graphic design", "text": "A consistent creative presence, with content and artwork made for your platforms.", "tags": ["Reels & short-form", "Social media marketing", "Digital artwork", "Thumbnails & graphics"], "featured": false}]
-export const work = [{"title": "Harlow & Vale", "category": "Real estate / Website design", "image": "/work/harlow.webp"}, {"title": "Bramble & Co.", "category": "Restaurant / Website design", "image": "/work/bramble.webp"}, {"title": "Lumina Home", "category": "Interiors / Ecommerce", "image": "/work/lumina.webp"}]
+export const services = [
+  {
+    id: 'branding',
+    number: '01',
+    title: 'Branding & visual identity',
+    summary: 'Logos, identity systems and guidelines that keep every touchpoint consistent.',
+    text: 'We define how your business looks and sounds: logo, colour, typography and the rules that hold them together. You get a system your team can keep using, not just a logo file.',
+    tags: ['Logo design', 'Brand identity', 'Brand guidelines', 'Visual systems'],
+  },
+  {
+    id: 'websites',
+    number: '02',
+    title: 'Website design & development',
+    summary: 'Business sites, landing pages and online stores that are easy to use.',
+    text: 'From page structure to the final build, we design websites that explain your business quickly and make the next step obvious. WordPress, WooCommerce or a custom build, depending on what the project needs.',
+    tags: ['Business websites', 'Landing pages', 'UI / UX design', 'Responsive development', 'WordPress', 'WooCommerce', 'Performance & SEO'],
+  },
+  {
+    id: 'ai-visuals',
+    number: '03',
+    title: 'AI visuals & creative production',
+    summary: 'AI imagery and cinematic video, directed around your brand.',
+    text: 'Creative direction, AI generation and careful editing combined to produce concept art, product scenes and cinematic video that would be slow or costly to shoot.',
+    tags: ['AI video production', 'Cinematic visuals', 'Concept art', 'AI imagery'],
+    featured: true,
+  },
+  {
+    id: 'advertising',
+    number: '04',
+    title: 'Advertising & campaign creative',
+    summary: 'Video ads and campaign visuals made for the channels you advertise on.',
+    text: 'Product and service ads, UGC-style videos and campaign visuals, planned around your audience and delivered in the sizes each platform needs.',
+    tags: ['AI video ads', 'Product campaigns', 'UGC-style videos', 'Real estate creative'],
+  },
+  {
+    id: 'motion',
+    number: '05',
+    title: 'Motion design & video editing',
+    summary: 'Editing, logo animation, explainers and lyric videos with real rhythm.',
+    text: 'Editing, titles and animation that give your message pace and clarity, from a short logo animation to a full promo, trailer or lyric video.',
+    tags: ['Lyric videos', 'Logo animation', 'Explainer videos', 'Promos & trailers', 'Post-production'],
+  },
+  {
+    id: 'social',
+    number: '06',
+    title: 'Social content & graphic design',
+    summary: 'Reels, social graphics and thumbnails that look like one brand.',
+    text: 'A steady flow of content that clearly belongs together: short-form video, social graphics, campaign artwork and thumbnails.',
+    tags: ['Reels & short-form', 'Social media marketing', 'Digital artwork', 'Thumbnails & graphics'],
+  },
+]
+
+export const work = [
+  { title: 'Harlow & Vale', category: 'Real estate website', image: '/work/harlow.webp' },
+  { title: 'Bramble & Co.', category: 'Restaurant website', image: '/work/bramble.webp' },
+  { title: 'Lumina Home', category: 'Interiors online store', image: '/work/lumina.webp' },
+]
+
+export const faqGroups = [
+  { id: 'general', label: 'General' },
+  { id: 'branding', label: 'Branding & design' },
+  { id: 'websites', label: 'Websites' },
+  { id: 'video', label: 'Video, AI & ads' },
+  { id: 'process', label: 'Process & delivery' },
+]
+
 export const faqs = [
-  {
-    "q": "What services does HZ offer?",
-    "a": "We bring together branding, website design and development, WordPress, ecommerce, AI visuals, advertising creative, motion design and graphic design. We can support a focused project or a connected visual direction across your business."
-  },
-  {
-    "q": "Can you create a complete brand identity?",
-    "a": "Yes. We can develop a logo, colour palette, typography and visual guidelines, then apply that identity across your website and creative materials. The exact deliverables are agreed in your brief."
-  },
-  {
-    "q": "Can you refresh a brand without replacing the logo?",
-    "a": "Yes. We can retain your logo and improve the supporting typography, colours, layouts and imagery to give your brand a more consistent presence."
-  },
-  {
-    "q": "What can you create with AI visuals?",
-    "a": "Our AI creative work includes concept imagery, product scenes, campaign visuals and cinematic video. We combine creative direction, generation and editing to shape the result around your brand."
-  },
-  {
-    "q": "Can our products and brand colours appear in the creative?",
-    "a": "Share your product photos, logo and brand guidelines. We will assess which visual approach fits best and agree how your brand assets will be used before production."
-  },
-  {
-    "q": "Do you help with ad concepts and scripts?",
-    "a": "We can help develop a campaign idea, visual direction and a script or storyboard. Let us know your audience, message and intended channel so those decisions support the brief."
-  },
-  {
-    "q": "Can one campaign be delivered in several formats?",
-    "a": "Yes. We can plan landscape, square and vertical versions for your chosen placements. Please confirm the required channels and sizes before production so each version is composed correctly."
-  },
-  {
-    "q": "Can you edit footage we already have?",
-    "a": "Yes. We can work with supplied footage for editing, pacing, titles, motion graphics and finishing. We will review the files and confirm their suitability for the intended output."
-  },
-  {
-    "q": "Do you create logo animations and explainer videos?",
-    "a": "Yes. Our motion services include logo animation, explainers, promotional videos and trailers. We agree the style, duration and required assets before animation begins."
-  },
-  {
-    "q": "Can you design social media content and thumbnails?",
-    "a": "Yes. We create branded social graphics, campaign artwork, thumbnails and short-form creative. We can work on individual pieces or a coordinated set of content."
-  },
-  {
-    "q": "Can you maintain a consistent look across different services?",
-    "a": "Yes. We use a shared visual direction for branding, website design, advertising and social content so the work feels connected wherever people encounter your business."
-  },
-  {
-    "q": "Can you redesign an existing website?",
-    "a": "Yes. We review the structure, content and visitor journey, then improve the design and functionality while retaining useful content. This can include WordPress rebuilds, mobile improvements and performance work."
-  },
-  {
-    "q": "Will my website work on phones and tablets?",
-    "a": "Yes. We build responsive layouts and check navigation, typography, forms and key interactions across mobile, tablet and desktop screen sizes."
-  },
-  {
-    "q": "Can I update my website after launch?",
-    "a": "For a WordPress or other content-managed website, we can set up editable pages and content areas. The handover and editing features are agreed as part of your project."
-  },
-  {
-    "q": "Do you build online stores?",
-    "a": "Yes. We work on ecommerce experiences, including WooCommerce, product pages and checkout journeys. Catalogue, payment, delivery and other requirements are planned with you before development."
-  },
-  {
-    "q": "Can you create video ads for my brand?",
-    "a": "Yes. We develop product and service commercials, campaign visuals, AI-assisted video and motion graphics. We agree the creative direction, formats and delivery requirements before production."
-  },
-  {
-    "q": "How do feedback and revisions work?",
-    "a": "We agree review stages and revision scope before starting. Consolidated feedback helps us make clear, coordinated changes and keep the work moving."
-  },
-  {
-    "q": "What files will I receive?",
-    "a": "Delivery formats depend on the service and where the work will be used. We agree the required image, video, brand or website handover files in the project scope, including whether editable source files are needed."
-  },
-  {
-    "q": "Can you work with our existing brand?",
-    "a": "Absolutely. Share your logo, guidelines and existing materials. We can build within your visual identity or help refine it when a refresh is part of the brief."
-  },
-  {
-    "q": "What does the project process look like?",
-    "a": "We start with your goals and content, agree the scope, develop a direction, then move through design, production and review. Website projects also include implementation and launch checks."
-  },
-  {
-    "q": "What should I prepare before we begin?",
-    "a": "A short business overview, your main goals, any existing brand assets, examples you like and the features or deliverables you need. We can help organise the remaining details."
-  },
-  {
-    "q": "Can you help with changes after launch?",
-    "a": "We can discuss ongoing updates, new pages and creative support. The scope and availability of post-launch support are agreed for your project."
-  }
+  // General
+  { group: 'general', q: 'What does HZ Digital Solutions do?', a: 'We design brand identities, build websites and online stores, and produce AI visuals, video ads, motion graphics and social content. You can hire us for one focused project or keep us on as an ongoing creative partner.' },
+  { group: 'general', q: 'Do you work with international clients?', a: 'Yes. We work remotely with clients in different countries and time zones. Briefs, reviews and approvals happen over email and video calls, so location is rarely a barrier.' },
+  { group: 'general', q: 'How much does a project cost?', a: 'Every project is quoted from your brief, because cost depends on the scope, the number of pages or deliverables and the timeline. Send us the details and you will get a clear written quote before any work begins.' },
+  { group: 'general', q: 'How long does a project take?', a: 'It depends on the size of the work. A set of thumbnails moves much faster than a full website or brand identity. We agree a schedule with review dates at the start, so you always know what happens next.' },
+
+  // Branding & design
+  { group: 'branding', q: 'Can you create a complete brand identity?', a: 'Yes. We can develop your logo, colour palette, typography and guidelines, then apply them to your website, social channels and marketing materials. The exact deliverables are agreed in your project scope.' },
+  { group: 'branding', q: 'Can you refresh our brand without changing the logo?', a: 'Yes. We can keep your logo and improve everything around it: typography, colour, layouts and imagery, so the brand looks more consistent without starting from zero.' },
+  { group: 'branding', q: 'Can you work within our existing brand guidelines?', a: 'Absolutely. Share your logo, guidelines and recent materials and we will design within them. If something in the guidelines is holding the brand back, we will tell you and suggest how to refine it.' },
+  { group: 'branding', q: 'Do you design social media content and thumbnails?', a: 'Yes. We create social graphics, campaign artwork, YouTube and lyric video thumbnails and short-form creative, either as single pieces or as a matching set for a launch or campaign.' },
+
+  // Websites
+  { group: 'websites', q: 'Which platforms do you build websites on?', a: 'Most business sites are built on WordPress so you can edit them yourself, and online stores on WooCommerce. When a project needs more speed or custom features, we build it with modern frameworks instead. We recommend the option that fits your goals and budget.' },
+  { group: 'websites', q: 'Can you redesign our existing website?', a: 'Yes. We review your current structure, content and visitor journey, keep what works and rebuild what does not. This can include a full redesign, a WordPress rebuild, mobile fixes or performance improvements.' },
+  { group: 'websites', q: 'Will my website work well on phones?', a: 'Yes. Every layout is designed for mobile, tablet and desktop, and we test navigation, text, forms and key actions on each before launch.' },
+  { group: 'websites', q: 'Can I update the website myself after launch?', a: 'Yes, for content-managed sites. We set up editable pages and show you how to change text, images and products. If you would rather not, we can also handle updates, new pages and improvements for you.' },
+  { group: 'websites', q: 'Do you build online stores?', a: 'Yes. We design and build ecommerce sites, including product pages, collections and checkout. Payments, delivery options and stock management are planned with you before development starts.' },
+
+  // Video, AI & ads
+  { group: 'video', q: 'What can you create with AI visuals?', a: 'Concept art, product scenes, campaign imagery and cinematic video. Your logo, products and brand colours can be included, and we combine AI generation with editing and creative direction so the result fits your brand rather than looking generic.' },
+  { group: 'video', q: 'Can you make video ads for my brand?', a: 'Yes. We can shape the idea, write the script or storyboard and produce the final ad, whether it is a product commercial, a service promo or a UGC-style video. We deliver landscape, square and vertical versions for the platforms you use.' },
+  { group: 'video', q: 'Can you edit footage we already have?', a: 'Yes. Send us your raw footage and we will handle the edit, pacing, titles, motion graphics, colour and sound finishing. We check the files first and tell you if anything limits the final result.' },
+  { group: 'video', q: 'Do you make logo animations, explainers and lyric videos?', a: 'Yes. Our motion work covers logo animations, explainer videos, promos, trailers and lyric videos. Style, length and required assets are agreed before animation begins.' },
+
+  // Process & delivery
+  { group: 'process', q: 'What does the process look like?', a: 'We start with your goals and a short brief, agree the scope and price, then develop a direction for you to approve. After that we move through design and production with planned review points, and finish with final checks and delivery or launch.' },
+  { group: 'process', q: 'What should I prepare before we start?', a: 'A short overview of your business, what you want to achieve, any brand assets you already have and a few examples you like. If something is missing, we will help you work it out.' },
+  { group: 'process', q: 'How do feedback and revisions work?', a: 'Each project has agreed review stages and a set number of revision rounds. Collecting feedback in one place for each round keeps changes clear and the project on schedule.' },
+  { group: 'process', q: 'Who owns the final work, and which files do I get?', a: 'Ownership and usage rights are written into your project agreement. Delivery files depend on the work, for example logo packages, high-resolution images, video exports or website access, and we confirm whether editable source files are included before we begin.' },
 ]
