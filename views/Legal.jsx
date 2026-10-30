@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Lines from '../components/Lines'
+import Reveal from '../components/Reveal'
 
 const terms = [
   ['Using this website', 'This website presents the work and services of HZ Digital Solutions. Please use it lawfully, respect others’ rights and do not attempt to interfere with its operation or security.'],
@@ -34,20 +35,20 @@ export default function Legal({ privacyPage = false }) {
       </section>
       <section className="section section-tight">
         <div className="wrap legal-layout">
-          <ol className="legal-content enter enter-late">
+          <ol className="legal-content">
             {sections.map(([title, text], i) => (
-              <li key={title}>
+              <Reveal as="li" key={title} delay={i < 3 ? 0.3 + i * 0.08 : 0}>
                 <span className="legal-num">{String(i + 1).padStart(2, '0')}</span>
                 <div><h2>{title}</h2><p>{text}</p></div>
-              </li>
+              </Reveal>
             ))}
           </ol>
-          <aside className="legal-aside">
+          <Reveal as="aside" className="legal-aside" delay={0.4}>
             <p>Questions about this page? <a href="mailto:zain@hzdigitalsolutions.com">Email us</a>.</p>
             <Link href={privacyPage ? '/terms-of-service' : '/privacy-policy'} className="text-link">
               <span>{privacyPage ? 'Read the terms of service' : 'Read the privacy policy'}</span>
             </Link>
-          </aside>
+          </Reveal>
         </div>
       </section>
     </main>
