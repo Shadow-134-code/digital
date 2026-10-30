@@ -1,2 +1,3 @@
 import View from '../views/NotFound'
-export default function NotFound(){return <View/>}
+export const metadata = { title: 'Page not found' }
+export default function NotFound() { return <View /> }
