@@ -21,7 +21,9 @@ export default function Template({ children }) {
 
     const scan = () => {
       const fold = window.innerHeight * 0.92
-      document.querySelectorAll('[data-reveal]:not([data-state])').forEach(el => {
+      // Also pick up anything still waiting from the previous page: the footer stays mounted
+      // between pages, and its observer was removed when that page closed.
+      document.querySelectorAll('[data-reveal]:not([data-state]), [data-reveal][data-state="wait"]').forEach(el => {
         if (el.getBoundingClientRect().top <= fold) { el.dataset.state = 'now'; return } // on screen: CSS entrance
         el.dataset.state = 'wait'
         observer.observe(el)
