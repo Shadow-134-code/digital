@@ -6,9 +6,9 @@ import CursorBadge from '../components/CursorBadge'
 import './globals.css'
 
 // Fonts are downloaded at build time and served from this site (no external requests).
-// Geist for the whole site; Manrope only for the HZ wordmark next to the logo (the original brand lettering).
+// Manrope (the original HZ brand lettering) for headings and the wordmark; Geist for body text.
 const sans = Geist({ subsets: ['latin'], variable: '--font-sans', display: 'swap' })
-const brand = Manrope({ subsets: ['latin'], variable: '--font-brand', display: 'swap', weight: ['500', '800'] })
+const brand = Manrope({ subsets: ['latin'], variable: '--font-brand', display: 'swap', weight: ['500', '600', '700', '800'] })
 
 export const metadata = {
   title: {
