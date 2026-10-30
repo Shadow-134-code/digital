@@ -241,7 +241,10 @@ p { color: var(--muted); text-wrap: pretty; }
 
 .menu-overlay {
   position: fixed; inset: var(--header-h) 0 0; z-index: var(--z-menu);
-  background: var(--bg);
+  background:
+    radial-gradient(90vw 60vh at 100% 0%, rgba(209, 60, 44, 0.2), transparent 65%),
+    radial-gradient(70vw 50vh at 0% 100%, rgba(150, 45, 32, 0.16), transparent 70%),
+    var(--bg);
   clip-path: inset(0 0 100% 0);
   transition: clip-path .6s var(--ease-in-out);
   overflow-y: auto;
@@ -258,6 +261,15 @@ p { color: var(--muted); text-wrap: pretty; }
 .site-header[data-open="true"] .menu-list a { opacity: 1; translate: 0 0; transition-delay: calc(0.12s + var(--i) * 0.05s); }
 .menu-list a[aria-current="page"] { color: var(--accent-text); }
 .menu-index { font-family: var(--ff-mono); font-size: 0.75rem; letter-spacing: 0.06em; color: var(--subtle); font-weight: 400; }
+.menu-cta {
+  display: grid; gap: 12px; justify-items: start; margin-top: 28px; padding: 22px;
+  border: 1px solid rgba(240, 130, 105, 0.2); border-radius: 22px;
+  background: radial-gradient(80% 90% at 100% 0%, rgba(209, 60, 44, 0.28), transparent 65%), var(--card-bg);
+  opacity: 0; translate: 0 24px; transition: opacity .5s ease, translate .6s var(--ease-out);
+}
+.site-header[data-open="true"] .menu-cta { opacity: 1; translate: 0 0; transition-delay: calc(0.12s + var(--i) * 0.05s); }
+.menu-cta-title { font-family: var(--ff-display); font-weight: 800; font-size: 1.5rem; line-height: 1.15; letter-spacing: -0.04em; color: var(--text); }
+.menu-cta .btn { width: 100%; justify-content: space-between; margin-top: 6px; }
 .menu-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-top: 32px; color: var(--muted); font-size: 0.95rem; }
 .menu-foot a { display: inline-flex; align-items: center; gap: 6px; }
 
