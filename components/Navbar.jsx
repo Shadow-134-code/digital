@@ -4,9 +4,10 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ArrowUpRight } from './Icons'
 
+// "Services" jumps to the services cards on the home page (the full /services page is linked from there).
 const items = [
   ['/work', 'Work'],
-  ['/services', 'Services'],
+  ['/#services', 'Services'],
   ['/company', 'Company'],
   ['/founder', 'Founder'],
   ['/faqs', 'FAQs'],
@@ -17,7 +18,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [bar, setBar] = useState({ scrolled: false, hidden: false })
   const toggle = useRef(null)
-  const isActive = to => pathname === to || pathname.startsWith(to + '/')
+  const isActive = to => to === '/#services' ? pathname === '/services' : pathname === to || pathname.startsWith(to + '/')
 
   useEffect(() => setOpen(false), [pathname])
 
