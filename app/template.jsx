@@ -7,7 +7,7 @@ export default function Template({ children }) {
   useLayoutEffect(() => {
     const scope = root.current
     const media = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const selector = '.hz-reveal, .portfolio-nav, .portfolio-category-heading, .partnership-note, .section-action, .process-cta, .creative-stage, .legal-content > section, .legal-content > p, .hz-faq-row'
+    const selector = '.hero-kicker, .hero h1, .hero-bottom, .page-hero > *, .hz-reveal, .portfolio-nav, .portfolio-category-heading, .partnership-note, .section-action, .process-cta, .creative-stage, .legal-content > section, .legal-content > p, .hz-faq-row'
     const candidates = [...scope.querySelectorAll(selector)].filter(el => {
       // FAQ rows reveal independently instead of animating one very tall list.
       if (el.classList.contains('hz-reveal') && el.querySelector('.hz-faq')) {
@@ -24,8 +24,6 @@ export default function Template({ children }) {
       return true
     })
     let observer
-    let loopObserver
-    const loops = [...scope.querySelectorAll('.creative-stage, .crossed-strips')]
     const show = (el, delay = 0) => {
       el.style.setProperty('--reveal-delay', `${delay}s`)
       el.dataset.revealState = 'visible'
@@ -33,9 +31,7 @@ export default function Template({ children }) {
     }
     const revealAll = () => {
       observer?.disconnect()
-      loopObserver?.disconnect()
       elements.forEach(el => { el.dataset.revealState = 'done' })
-      loops.forEach(el => el.classList.remove('motion-offscreen'))
     }
     if (!media.matches && 'IntersectionObserver' in window) {
       elements.forEach(el => {
@@ -44,14 +40,12 @@ export default function Template({ children }) {
       })
       observer = new IntersectionObserver(entries => {
         const visible = entries.filter(entry => entry.isIntersecting).sort((a,b) => a.boundingClientRect.top - b.boundingClientRect.top || a.boundingClientRect.left - b.boundingClientRect.left)
-        visible.forEach(entry => {
-          // Reveal related content together rather than running a card-by-card cascade.
-          show(entry.target)
+        visible.forEach((entry, index) => {
+          // A bounded stagger: a row settles together without delaying the next section.
+          show(entry.target, Math.min(index * .055, .165))
         })
-      }, { threshold: 0, rootMargin: '0px 0px 24px 0px' })
+      }, { threshold: 0, rootMargin: '0px 0px 48px 0px' })
       elements.forEach(el => observer.observe(el))
-      loopObserver = new IntersectionObserver(entries => entries.forEach(entry => entry.target.classList.toggle('motion-offscreen', !entry.isIntersecting)), { rootMargin: '80px' })
-      loops.forEach(el => loopObserver.observe(el))
     }
     const onFocus = event => {
       const el = event.target.closest('[data-reveal-state]')

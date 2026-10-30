@@ -2,15 +2,22 @@
 :root { --studio-ease: cubic-bezier(.22,1,.36,1); --studio-line: #ffffff16; }
 .hero, .page-hero { position: relative; isolation: isolate; }
 .hero { overflow: visible; }
-.hero::before, .page-hero::before {
+.page-hero { border-bottom: 0; }
+.hero::before, .page-hero::before,
+.hero::after, .page-hero::after {
   content: ''; position: absolute; z-index: -1; pointer-events: none;
-  top: -80px; bottom: 0; left: calc(50% - 50vw); width: 100vw;
-  background: radial-gradient(ellipse at 8% 12%, #a42d252b, transparent 48%),
-              radial-gradient(ellipse at 92% 60%, #d24c3022, transparent 48%);
-  transform: scale(1.08);
-  transform-origin: center;
-  animation: hz-ambient-drift 18s cubic-bezier(.45,0,.55,1) infinite alternate;
-  will-change: transform;
+  top: -60px; bottom: 0; left: calc(50% - 60vw); width: 120vw;
+  background: radial-gradient(ellipse at 20% 28%, #b7352940, transparent 58%);
+  animation: hz-light-pass 12s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+.hero::after, .page-hero::after {
+  background: radial-gradient(ellipse at 78% 65%, #d66a3433, transparent 53%);
+  animation-delay: -6s; animation-direction: alternate-reverse;
+}
+@keyframes hz-light-pass {
+  from { transform: translate3d(-4%, -1%, 0); opacity: .45; }
+  to { transform: translate3d(4%, 2%, 0); opacity: 1; }
 }
 .hero h1 span:nth-child(2), .page-hero h1 span {
   color: #ee7765;
@@ -70,30 +77,48 @@
 .contact-form input:focus, .contact-form textarea:focus, .project-trigger:focus-visible {
   border-color: #df7c66; box-shadow: 0 0 0 3px #d84f3514;
 }
-/* Entrance choreography stays independent from floating/hover transforms. */
-.page-arrival [data-reveal-state="waiting"] { translate: 0 8px; }
-.page-arrival [data-reveal-state="visible"] { animation-duration: .36s; }
-.page-arrival [data-reveal-kind="media"][data-reveal-state="visible"] {
-  animation-name: media-arrive; animation-duration: .42s;
+/* A single route/scroll entrance owner; no nested or competing animations. */
+.page-arrival .hz-reveal,
+.page-arrival .page-eyebrow, .page-arrival .hero-kicker,
+.page-arrival .page-hero h1, .page-arrival .page-hero > p,
+.page-arrival .hero-bottom, .page-arrival .creative-stage,
+.page-arrival .portfolio-nav, .page-arrival .portfolio-category-heading,
+.page-arrival .partnership-note, .page-arrival .section-action,
+.page-arrival .process-cta { animation: none; }
+.page-arrival [data-reveal-state="waiting"] { opacity: 0; translate: 0 14px; }
+.page-arrival [data-reveal-state="visible"] {
+  animation: content-arrive .58s var(--reveal-delay, 0s) var(--studio-ease) both;
 }
-@keyframes content-arrive { from { opacity: 0; translate: 0 8px; } to { opacity: 1; translate: 0 0; } }
-@keyframes media-arrive { from { opacity: 0; translate: none; } to { opacity: 1; translate: none; } }
-.page-arrival [data-reveal-kind="media"][data-reveal-state="waiting"] { translate: none; }
-.page-arrival .page-eyebrow,.page-arrival .hero-kicker { animation-duration: .3s; }
-.page-arrival .page-hero h1 { animation-duration: .42s; animation-delay: 0s; }
-.page-arrival .page-hero>p,.page-arrival .hero-bottom { animation-duration: .36s; animation-delay: .05s; }
-/* Hover feedback belongs to the active control; entire cards stay grounded. */
-.capability-card:hover { translate: none; transform: none; }
-.capability-card:hover .capability-top svg { translate: none; }
-.capability-link:hover svg,.arrow-link:hover svg,.footer-project-button:hover svg { transform: none; }
+.page-arrival [data-reveal-kind="media"][data-reveal-state="visible"] {
+  animation-name: media-arrive; animation-duration: .7s;
+}
+.page-arrival [data-reveal-state="done"] { animation: none; opacity: 1; translate: none; }
+@keyframes content-arrive { from { opacity: 0; translate: 0 14px; } to { opacity: 1; translate: 0 0; } }
+@keyframes media-arrive { from { opacity: 0; translate: 0 18px; } to { opacity: 1; translate: 0 0; } }
+/* Keep motion on small composited surfaces, not the scrolling document. */
+.nav-wrap { -webkit-backdrop-filter: none; backdrop-filter: none; }
 .creative-stage .creative-float { animation-duration: 6.4s; }
-@keyframes showcase-float { 0%,100% { translate: 0 3px; } 50% { translate: 0 -3px; } }
+@keyframes showcase-float { 0%,100% { translate: 0 4px; } 50% { translate: 0 -4px; } }
+.capability-card { transition: border-color .25s, background-color .25s; }
+.capability-card:hover { translate: none; transform: none; border-color: #be67575c; }
+.capability-card:hover .capability-top svg { translate: none; }
+.hero-primary, .hero-secondary, .submit-button, .footer-project-button { border-radius: 999px; }
 @media(hover:hover) and (pointer:fine) {
   .hero-primary:hover, .submit-button:not(:disabled):hover {
-    transform: none; border-color: #f5a88b9c;
+    transform: translateY(-2px); border-color: #f5a88b9c;
     box-shadow: inset 0 1px #ffffff20, 0 10px 30px #a32b2133;
   }
+  .capability-link:hover svg, .arrow-link:hover svg, .footer-project-button:hover svg { transform: translate(2px,-2px); }
 }
+/* Editorial spacing and calmer surfaces keep the work in focus. */
+.section, .page-section { padding-block: clamp(64px, 7vw, 106px); }
+.section-head { padding-bottom: 28px; margin-bottom: 30px; border-bottom: 0; }
+.hero { padding-top: clamp(40px, 5vw, 72px); }
+.hero h1 { font-size: clamp(36px, 5.2vw, 76px); line-height: 1.12; letter-spacing: -.045em; }
+.page-hero h1 { font-size: clamp(36px, 5.2vw, 72px); line-height: 1.12; max-width: 19ch; }
+.section-head h2, .section-title-spaced { font-size: clamp(30px, 3.2vw, 48px); }
+.value-card { border-radius: 12px; }
+.partnership-note { border-radius: 12px; }
 /* Mobile bands are parallel, separated, and never pause on hover. */
 @media(max-width:720px) {
   .crossed-strips { height: 120px; margin-top: 30px; margin-bottom: 8px; display: flex; flex-direction: column; justify-content: center; gap: 20px; background: radial-gradient(ellipse at 50% 50%, #a5382924, transparent 72%); }
@@ -102,8 +127,8 @@
   .hero::before, .page-hero::before { top: -50px; }
   .hero-bottom { margin-top: 24px; }
   .hz-faq-row { padding-inline: 10px; }
-  .page-arrival [data-reveal-state="visible"] { animation-duration: .3s; }
-  .page-arrival [data-reveal-kind="media"][data-reveal-state="visible"] { animation-duration: .36s; }
+  .page-arrival [data-reveal-state="visible"] { animation-duration: .48s; }
+  .page-arrival [data-reveal-kind="media"][data-reveal-state="visible"] { animation-duration: .55s; }
 }
 @media(prefers-reduced-motion:reduce) {
   .page-arrival [data-reveal-state] { animation: none!important; opacity: 1; translate: none; }
