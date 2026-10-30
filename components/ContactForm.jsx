@@ -57,8 +57,8 @@ export default function ContactForm() {
       {/* POST prevents personal details entering the URL if JavaScript fails. */}
       <noscript><p className="field-full">Please enable JavaScript to send this form, or email zain@hzdigitalsolutions.com directly.</p></noscript>
       <div className="form-heading field-full">
-        <p className="form-kicker">Your brief</p>
-        <h2>Tell us what you have in mind.</h2>
+        <p className="form-kicker label">Your brief</p>
+        <h2>Tell us what you <em>have in mind.</em></h2>
         <p>A few details are all we need to start the conversation.</p>
       </div>
       <div className="form-trap" aria-hidden="true"><label>Leave this field empty<input name="_honey" tabIndex={-1} autoComplete="off" /></label></div>

@@ -1,9 +1,10 @@
 "use client";
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ArrowUp, ArrowUpRight } from './Icons'
+import { ArrowUp, ArrowUpRight, Mail } from './Icons'
 import Lines from './Lines'
 import Reveal from './Reveal'
+import Spotlight from './Spotlight'
 
 const links = [['/work', 'Work'], ['/services', 'Services'], ['/company', 'Company'], ['/founder', 'Founder'], ['/faqs', 'FAQs'], ['/contact', 'Contact']]
 
@@ -15,18 +16,29 @@ export default function Footer() {
     <footer className="site-footer">
       {pathname !== '/contact' && (
         <section className="cta-band" aria-labelledby="cta-title">
-          <div className="wrap cta-inner">
-            <Reveal as="p" className="label">Start a project</Reveal>
-            <h2 id="cta-title" className="cta-title" data-reveal="mask">
-              <Lines lines={['Have something in mind?', <em key="e">Let’s make it real.</em>]} />
-            </h2>
-            <Reveal className="cta-side" delay={0.12}>
-              <p>Tell us what you’re planning, even if it’s only an idea. We’ll help you shape the right next step.</p>
-              <div className="cta-actions">
-                <Link href="/contact" className="btn btn-dark">Start a project <ArrowUpRight size={18} /></Link>
-                <a className="cta-mail" href="mailto:zain@hzdigitalsolutions.com">zain@hzdigitalsolutions.com</a>
-              </div>
-            </Reveal>
+          <div className="wrap">
+            <Spotlight>
+              <Reveal className="cta-panel" data-spot="">
+                <span className="cta-light" aria-hidden="true" />
+                <img className="cta-mark" src="/hz-mark.webp" alt="" width="160" height="142" loading="lazy" aria-hidden="true" />
+                <div className="cta-inner">
+                  <p className="label">Start a project</p>
+                  <h2 id="cta-title" className="cta-title" data-reveal="mask">
+                    <Lines lines={['Have something in mind?', <em key="e">Let’s make it real.</em>]} />
+                  </h2>
+                  <div className="cta-side">
+                    <p>Tell us what you’re planning, even if it’s only an idea. We’ll help you shape the right next step.</p>
+                    <div className="cta-actions">
+                      <Link href="/contact" className="btn">Start a project <ArrowUpRight size={18} /></Link>
+                      <a className="cta-mail" href="mailto:zain@hzdigitalsolutions.com"><Mail size={16} /> zain@hzdigitalsolutions.com</a>
+                    </div>
+                  </div>
+                  <ul className="cta-tags" aria-label="What we work on">
+                    <li>Brand identity</li><li>Websites</li><li>AI visuals</li><li>Video &amp; motion</li><li>Campaigns</li>
+                  </ul>
+                </div>
+              </Reveal>
+            </Spotlight>
           </div>
         </section>
       )}
