@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link'
-import ProjectSelect from './ProjectSelect'
+import ServicePicker from './ServicePicker'
 import { useId, useRef, useState } from 'react'
 import { ArrowUpRight, Check, LinkIcon, Mail } from './Icons'
 
@@ -10,7 +10,7 @@ export default function ContactForm() {
   const inFlight = useRef(false)
   const assetsHint = useId()
   const [emailFallback, setEmailFallback] = useState('mailto:zain@hzdigitalsolutions.com')
-  const [projectType, setProjectType] = useState('Website design')
+  const [services, setServices] = useState([])
   const [status, setStatus] = useState('idle')
   const [message, setMessage] = useState('')
 
@@ -23,7 +23,8 @@ export default function ContactForm() {
     const form = e.currentTarget
     const data = Object.fromEntries(new FormData(form).entries())
     if (data._honey) { inFlight.current = false; setStatus('idle'); return }
-    const body = [data.name, data.email, data.company, 'Project: ' + data.projectType, data.file_link ? 'Assets: ' + data.file_link : '', '', data.message].filter(Boolean).join('\n')
+    data.services = data.services || 'Not specified'
+    const body = [data.name, data.email, data.company, 'Services: ' + data.services, data.file_link ? 'Assets: ' + data.file_link : '', '', data.message].filter(Boolean).join('\n')
     setEmailFallback('mailto:zain@hzdigitalsolutions.com?subject=' + encodeURIComponent('HZ Digital Solutions project enquiry') + '&body=' + encodeURIComponent(body))
     const endpoint = FALLBACK_ENDPOINT
 
@@ -36,11 +37,11 @@ export default function ContactForm() {
         credentials: 'omit',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         // Only send intended fields, never arbitrary provider configuration fields.
-        body: JSON.stringify({ name: data.name, email: data.email, company: data.company, projectType: data.projectType, file_link: data.file_link, message: data.message, _honey: data._honey, _subject: 'New HZ Digital Solutions website enquiry' }),
+        body: JSON.stringify({ name: data.name, email: data.email, company: data.company, services: data.services, file_link: data.file_link, message: data.message, _honey: data._honey, _subject: 'New HZ Digital Solutions website enquiry' }),
       })
       const result = await response.json()
       if (!response.ok || ![true, 'true'].includes(result.success)) throw new Error('Submission failed')
-      form.reset(); setProjectType('Website design')
+      form.reset(); setServices([])
       setStatus('sent')
       setMessage('Thanks — your enquiry has been submitted.')
     } catch {
@@ -70,11 +71,11 @@ export default function ContactForm() {
         <span className="field-label">Your email</span>
         <input name="email" maxLength={254} required type="email" placeholder="you@company.com" autoComplete="email" />
       </label>
-      <label className="field">
-        <span className="field-label">Company / brand</span>
+      <label className="field field-full">
+        <span className="field-label">Company / brand <small>(optional)</small></span>
         <input name="company" maxLength={150} placeholder="Company name" autoComplete="organization" />
       </label>
-      <ProjectSelect value={projectType} onChange={setProjectType} />
+      <ServicePicker value={services} onChange={setServices} />
       <label className="field field-full">
         <span className="field-label"><LinkIcon size={15} /> Link to your assets <small>(optional)</small></span>
         <input name="file_link" type="url" maxLength={2048} placeholder="https://drive.google.com/..." aria-describedby={assetsHint} onInput={e => {
