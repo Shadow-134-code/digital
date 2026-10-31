@@ -104,11 +104,10 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .page-title { font-size: clamp(2.4rem, 5vw, 4.8rem); line-height: 1.04; letter-spacing: -0.047em; }
 .section-title { font-size: clamp(2rem, 3.6vw, 3.25rem); line-height: 1.08; }
 .statement { font-size: clamp(1.55rem, 2.8vw, 2.55rem); line-height: 1.24; font-weight: 700; letter-spacing: -0.035em; max-width: 26ch; }
-.statement .muted { color: #7d736b; }
 
 em { font-style: normal; color: var(--muted); }
 /* The accent line of a heading: the HZ red, as a slow-moving gradient (from the original site). */
-:is(.display, .page-title, .section-title, .cta-title, .form-heading h2) em {
+:is(.display, .page-title, .section-title, .statement, .cta-title, .form-heading h2) em {
   color: var(--accent-text);
   background: var(--grad-text);
   background-size: 260% 100%;
