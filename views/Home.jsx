@@ -43,7 +43,7 @@ export default function Home() {
         <div className="wrap">
           <Reveal as="p" className="label"><span className="label-index">01</span>The studio</Reveal>
           <h2 id="studio-title" className="statement" data-reveal="mask">
-            <Lines lines={[<>We bring strategy, design, development and production together, <span className="muted">so your identity, website and campaigns feel like one brand instead of five different suppliers.</span></>]} />
+            <Lines lines={[<>We bring strategy, design, development and production together, <em>so your identity, website and campaigns feel like one brand instead of five different suppliers.</em></>]} />
           </h2>
           <ol className="principles">
             {principles.map(([title, text], i) => (

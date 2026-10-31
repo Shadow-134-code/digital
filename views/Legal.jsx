@@ -13,7 +13,7 @@ const terms = [
 ]
 
 const privacy = [
-  ['Information you share', 'When you contact us, we receive the details you enter in the enquiry form, such as your name, email address, company, project type, optional assets link and message. You may also contact us directly by email. Please avoid submitting sensitive personal information.'],
+  ['Information you share', 'When you contact us, we receive the details you enter in the enquiry form, such as your name, email address, company, the services you need, optional assets link and message. You may also contact us directly by email. Please avoid submitting sensitive personal information.'],
   ['How we use it', 'We use enquiry information to respond, understand your requirements and discuss potential work. If a project proceeds, we may use relevant information to deliver and administer that project.'],
   ['Providers that support this website', 'The website is hosted on Vercel. Enquiry submissions are processed through FormSubmit and delivered by email. These providers may process technical information necessary to operate and secure their services. Their privacy notices explain their own processing: vercel.com/legal/privacy-notice and formsubmit.co/privacy.pdf.'],
   ['Videos, fonts and analytics', 'Portfolio videos and fonts are served directly with this website. We do not embed Google Drive video players. This version does not include a dedicated analytics or advertising tracking tool. Your browser and hosting infrastructure still exchange technical data needed to deliver the site.'],
@@ -29,7 +29,7 @@ export default function Legal({ privacyPage = false }) {
       <section className="page-hero page-hero--compact">
         <div className="wrap">
           <p className="label enter">Legal</p>
-          <h1 className="page-title enter-lines"><Lines lines={privacyPage ? ['Privacy policy'] : ['Terms of service']} /></h1>
+          <h1 className="page-title enter-lines"><Lines lines={privacyPage ? [<>Privacy <em>policy.</em></>] : [<>Terms of <em>service.</em></>]} /></h1>
           <p className="legal-updated enter enter-late">Last updated 11 October 2026</p>
         </div>
       </section>
