@@ -192,7 +192,8 @@ p { color: var(--muted); text-wrap: pretty; }
 .site-header {
   position: fixed; inset: 0 0 auto; z-index: var(--z-header);
   height: var(--header-h);
-  transition: translate .45s var(--ease-out), background-color .3s ease, border-color .3s ease;
+  /* The blur returns only after the menu's closing wipe (.6s) has finished. */
+  transition: translate .45s var(--ease-out), background-color .3s ease, border-color .3s ease, -webkit-backdrop-filter 0s linear .6s, backdrop-filter 0s linear .6s;
   border-bottom: 1px solid transparent;
 }
 .site-header[data-scrolled="true"] {
@@ -202,7 +203,8 @@ p { color: var(--muted); text-wrap: pretty; }
   border-bottom-color: var(--line);
 }
 .site-header[data-hidden="true"] { translate: 0 -100%; }
-.site-header[data-open="true"] { background: var(--bg); border-bottom-color: transparent; }
+/* The blur above would trap the fixed menu inside the header bar, so it is switched off while the menu is open. */
+.site-header[data-open="true"] { background: var(--bg); border-bottom-color: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; translate: none; transition: translate .45s var(--ease-out), background-color .3s ease, border-color .3s ease; }
 .header-inner { height: 100%; display: flex; align-items: center; gap: 28px; }
 
 /* Logo: original HZ sizing and lettering. The mark never moves; only the name changes colour on hover. */
@@ -905,8 +907,6 @@ button:hover > .play-badge { scale: 1.08; background: var(--accent); border-colo
 /* ---------- Responsive ---------- */
 @media (max-width: 1100px) {
   .nav-link { padding: 0 10px; }
-  .showcase { grid-template-columns: 0.9fr 1.5fr; }
-  .showcase-art { display: none; }
   .principles, .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .principles li:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .capability-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -922,19 +922,31 @@ button:hover > .play-badge { scale: 1.08; background: var(--accent); border-colo
   .hero-index { grid-row: auto; }
   .split > div:first-child, .faq-aside, .legal-aside { position: static; }
   .work-group-head p { justify-self: start; }
-  .founder-hero-portrait { max-width: 520px; }
+  .founder-hero-portrait, .founder-teaser .portrait { max-width: 520px; }
   .selected-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .sel-site { grid-row: auto; grid-column: 1 / -1; }
-  .sel-site .work-media { aspect-ratio: 4 / 5; height: auto; min-height: 0; max-height: 80vh; }
+  .sel-site .work-media { aspect-ratio: 16 / 11; height: auto; min-height: 0; }
   .sel-film { grid-column: 1 / -1; }
   .sel-art-1 { grid-column: 1; }
   .sel-art-2 { grid-column: 2; }
-  .work-grid--websites { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .work-grid--websites { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .work-grid--websites .work-meta { flex-direction: column; gap: 2px; }
+  .work-grid--websites .work-meta p { text-align: left; }
   .service-block { grid-template-columns: minmax(0, 1fr); }
   .footer-main { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .footer-brand { grid-column: 1 / -1; }
-  .media-strip-grid { grid-template-columns: 0.8fr 1.2fr; }
-  .media-strip-grid .strip-low { display: none; }
+  /* Tablets and phones: every example stays visible as a swipeable row, the next card peeking in at the edge. */
+  .showcase, .media-strip-grid {
+    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: clamp(250px, 46%, 400px);
+    align-items: start; overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter);
+    padding-inline: var(--gutter); padding-block: 12px 18px; scrollbar-width: none;
+  }
+  .showcase::-webkit-scrollbar, .media-strip-grid::-webkit-scrollbar { display: none; }
+  .showcase { margin-inline: calc(var(--gutter) * -1); }
+  .showcase-item, .strip-item { scroll-snap-align: start; margin-top: 0; }
+  .showcase-item { animation: none; }
+  .showcase-site .showcase-media, .showcase-film .showcase-media, .showcase-art .showcase-media, .strip-tall, .strip-wide { aspect-ratio: 16 / 11; }
   .contact-notes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .contact-note:last-child { grid-column: 1 / -1; }
 }
@@ -961,8 +973,8 @@ button:hover > .play-badge { scale: 1.08; background: var(--accent); border-colo
   .display { font-size: clamp(2.7rem, 13.4vw, 4.2rem); }
   .page-title { font-size: clamp(2.5rem, 12vw, 3.6rem); }
   .hero-actions { gap: 22px; }
-  .showcase { grid-template-columns: minmax(0, 1fr); margin-top: 48px; }
-  .showcase-site { display: none; }
+  .showcase { grid-auto-columns: 84%; margin-top: 40px; }
+  .media-strip-grid { grid-auto-columns: 84%; }
   .showcase-film { order: -1; }
   .principles, .steps { grid-template-columns: minmax(0, 1fr); }
   .capability-grid { grid-template-columns: minmax(0, 1fr); }
@@ -972,6 +984,7 @@ button:hover > .play-badge { scale: 1.08; background: var(--accent); border-colo
   .partnership-note > a { margin-left: 58px; }
   .selected-grid, .work-grid--websites, .work-grid--films { grid-template-columns: minmax(0, 1fr); }
   .sel-art-1, .sel-art-2 { grid-column: 1; }
+  .sel-site .work-media { aspect-ratio: 4 / 5; max-height: 80vh; }
   .work-grid--thumbnails { grid-template-columns: minmax(0, 1fr); }
   .work-grid--thumbnails > * { grid-column: auto !important; }
   .work-meta { flex-direction: column; gap: 2px; }
@@ -989,8 +1002,10 @@ button:hover > .play-badge { scale: 1.08; background: var(--accent); border-colo
   .faq-answer p { padding-right: 0; }
   .footer-main { grid-template-columns: minmax(0, 1fr); }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
-  .media-strip-grid { grid-template-columns: minmax(0, 1fr); }
-  .media-strip-grid .strip-tall { display: none; }
+  /* Bigger tap areas and readable fine print on phones. */
+  .footer-col a, .footer-bottom a, .contact-note a { min-height: 40px; }
+  .footer-bottom a { display: inline-flex; align-items: center; }
+  .field-help, .form-bottom p, .field-label small { font-size: 12.5px; }
   .cta-mark { width: 200px; bottom: -6%; right: -30px; opacity: .07; }
   .cta-inner { padding: 36px 22px 30px; }
   .cta-actions .btn { width: 100%; justify-content: space-between; }
