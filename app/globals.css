@@ -370,7 +370,7 @@ p { color: var(--muted); text-wrap: pretty; }
 .showcase-art .showcase-media { aspect-ratio: 16 / 10; }
 
 .play-badge {
-  position: absolute; left: 50%; top: 50%; width: 58px; height: 58px; margin: -29px 0 0 -29px;
+  position: absolute; inset: 0; z-index: 2; width: 58px; height: 58px; margin: auto;
   display: grid; place-items: center; border-radius: 50%;
   background: rgba(13, 12, 11, 0.55); color: var(--text);
   border: 1px solid rgba(242, 236, 228, 0.3);
@@ -378,7 +378,11 @@ p { color: var(--muted); text-wrap: pretty; }
   transition: scale .4s var(--ease-out), background-color .3s ease, border-color .3s ease;
 }
 .play-badge svg { translate: 2px 0; }
-.play-badge--lg { width: 76px; height: 76px; margin: -38px 0 0 -38px; }
+.play-badge--lg { width: 76px; height: 76px; }
+/* Phones and tablets: a solid badge (the blur renders unevenly on mobile browsers). */
+@media (hover: none) {
+  .play-badge { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(13, 12, 11, 0.68); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35); }
+}
 button:hover > .play-badge { scale: 1.08; background: var(--accent); border-color: var(--accent); }
 
 /* Crossed service ribbons: the original HZ "X" (red strip in front, dark strip behind, same centre line).
@@ -935,18 +939,12 @@ button:hover > .play-badge { scale: 1.08; background: var(--accent); border-colo
   .service-block { grid-template-columns: minmax(0, 1fr); }
   .footer-main { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .footer-brand { grid-column: 1 / -1; }
-  /* Tablets and phones: every example stays visible as a swipeable row, the next card peeking in at the edge. */
-  .showcase, .media-strip-grid {
-    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: clamp(250px, 46%, 400px);
-    align-items: start; overflow-x: auto; overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter);
-    padding-inline: var(--gutter); padding-block: 12px 18px; scrollbar-width: none;
-  }
-  .showcase::-webkit-scrollbar, .media-strip-grid::-webkit-scrollbar { display: none; }
-  .showcase { margin-inline: calc(var(--gutter) * -1); }
-  .showcase-item, .strip-item { scroll-snap-align: start; margin-top: 0; }
-  .showcase-item { animation: none; }
+  /* Tablets: all three examples sit side by side, fully inside the page (nothing cut off at the edge). */
+  .showcase, .media-strip-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: start; }
+  .showcase-item, .strip-item { margin-top: 0; }
+  .showcase-item { animation: none; gap: 10px; }
   .showcase-site .showcase-media, .showcase-film .showcase-media, .showcase-art .showcase-media, .strip-tall, .strip-wide { aspect-ratio: 16 / 11; }
+  .showcase-item figcaption { flex-direction: column; align-items: flex-start; gap: 2px; }
   .contact-notes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .contact-note:last-child { grid-column: 1 / -1; }
 }
@@ -973,9 +971,13 @@ button:hover > .play-badge { scale: 1.08; background: var(--accent); border-colo
   .display { font-size: clamp(2.7rem, 13.4vw, 4.2rem); }
   .page-title { font-size: clamp(2.5rem, 12vw, 3.6rem); }
   .hero-actions { gap: 22px; }
-  .showcase { grid-auto-columns: 84%; margin-top: 40px; }
-  .media-strip-grid { grid-auto-columns: 84%; }
-  .showcase-film { order: -1; }
+  /* Phones: the film runs full width on top, the other two examples share the row below. */
+  .showcase, .media-strip-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .showcase { margin-top: 40px; }
+  .play-badge { width: 50px; height: 50px; }
+  .play-badge--lg { width: 58px; height: 58px; }
+  .play-badge svg { width: 18px; height: 18px; }
+  .showcase-film, .media-strip-grid > :nth-child(2) { order: -1; grid-column: 1 / -1; }
   .principles, .steps { grid-template-columns: minmax(0, 1fr); }
   .capability-grid { grid-template-columns: minmax(0, 1fr); }
   .capability-card { padding: 25px; }
