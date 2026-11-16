@@ -60,10 +60,11 @@ export const services = [
   },
 ]
 
+// Live client websites (full-page screenshots). w/h are the image's real size.
 export const work = [
-  { title: 'Harlow & Vale', category: 'Real estate website', image: '/work/harlow.webp' },
-  { title: 'Bramble & Co.', category: 'Restaurant website', image: '/work/bramble.webp' },
-  { title: 'Lumina Home', category: 'Interiors online store', image: '/work/lumina.webp' },
+  { title: 'Firm Foundation Builders', category: 'Construction website', image: '/work/firm-foundation.webp', w: 1000, h: 6821 },
+  { title: 'SaniBonn', category: 'Plumbing & heating website', image: '/work/sanibonn.webp', w: 1000, h: 5132 },
+  { title: 'Kum Correct Cleaning Co.', category: 'Cleaning services website', image: '/work/kum-correct.webp', w: 1000, h: 3743 },
 ]
 
 export const faqGroups = [

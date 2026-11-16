@@ -8,7 +8,7 @@ import { films } from '../data/commercialFilms'
 import { thumbnailArtwork } from '../data/thumbnailArtwork'
 
 const groups = [
-  { id: 'websites', label: 'Websites', copy: 'Full-page designs for real estate, hospitality and retail. Open one to scroll the whole page.', items: work, Card: SiteCard },
+  { id: 'websites', label: 'Websites', copy: 'Live websites for construction, plumbing and cleaning businesses. Open one to scroll the whole page.', items: work, Card: SiteCard },
   { id: 'films', label: 'Films', copy: 'Commercials and promotional films for products, services and brands.', items: films, Card: FilmCard },
   { id: 'thumbnails', label: 'Thumbnails', copy: 'Cover artwork built on bold typography and cinematic composition.', items: thumbnailArtwork, Card: ArtCard },
 ]

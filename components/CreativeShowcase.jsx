@@ -19,7 +19,7 @@ export default function CreativeShowcase() {
         <figure className="showcase-item showcase-site">
           <button type="button" className="showcase-media" data-cursor="View" aria-label={`View the full ${site.title} website design`}
             onClick={() => setActive({ type: 'image', kind: 'site', src: site.image, title: site.title, category: site.category, alt: `${site.title} full website design` })}>
-            <img src={site.image} alt={`${site.title} website design`} width="768" height="1376" fetchPriority="high" />
+            <img src={site.image} alt={`${site.title} website design`} width={site.w} height={site.h} fetchPriority="high" />
           </button>
           <figcaption><span className="label">Website</span>{site.title}</figcaption>
         </figure>

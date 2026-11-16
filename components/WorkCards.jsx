@@ -13,7 +13,7 @@ export function SiteCard({ item, onOpen, className = '', delay = 0 }) {
         aria-label={`View the full ${item.title} website design`}
         onClick={() => onOpen({ type: 'image', kind: 'site', src: item.image, title: item.title, category: item.category, alt: `${item.title} full website design` })}
       >
-        <img src={item.image} alt={`${item.title} website design`} width="768" height="1376" loading="lazy" />
+        <img src={item.image} alt={`${item.title} website design`} width={item.w} height={item.h} loading="lazy" />
       </button>
       <div className="work-meta"><h3>{item.title}</h3><p>{item.category}</p></div>
     </Reveal>

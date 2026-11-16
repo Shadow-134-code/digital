@@ -25,7 +25,7 @@ export default function About() {
 
       <section className="media-strip" aria-label="Examples of our work">
         <div className="wrap media-strip-grid">
-          <Reveal variant="media" className="strip-item strip-tall"><img src="/work/lumina.webp" alt="Lumina Home online store design" width="768" height="1376" /></Reveal>
+          <Reveal variant="media" className="strip-item strip-tall"><img src="/work/kum-correct.webp" alt="Kum Correct Cleaning Co. website design" width="1000" height="3743" /></Reveal>
           <Reveal variant="media" delay={0.08} className="strip-item strip-wide"><img src="/videos/service-promo.webp" alt="Frame from a service promotion film" width="1280" height="720" /></Reveal>
           <Reveal variant="media" delay={0.16} className="strip-item strip-wide strip-low"><img src="/creative/reference/artwork-02.webp" alt="Never Just Friends thumbnail artwork" width="720" height="405" /></Reveal>
         </div>

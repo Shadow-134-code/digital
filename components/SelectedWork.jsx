@@ -9,7 +9,7 @@ import { thumbnailArtwork } from '../data/thumbnailArtwork'
 // A short, curated preview for the home page. The full portfolio lives on /work.
 export default function SelectedWork() {
   const [active, setActive] = useState(null)
-  const site = work.find(w => w.title === 'Bramble & Co.') || work[0]
+  const site = work.find(w => w.title === 'SaniBonn') || work[0]
   const film = films.find(f => f.title === 'Plumbing services') || films[0]
   const art = thumbnailArtwork.filter(a => ['After Midnight', 'Never Just Friends'].includes(a.title))
 
