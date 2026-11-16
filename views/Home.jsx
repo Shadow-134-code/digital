@@ -54,7 +54,7 @@ export default function Home() {
               </Reveal>
             ))}
           </ol>
-          <Reveal className="section-foot"><ArrowLink to="/company">About the studio</ArrowLink></Reveal>
+          <Reveal className="section-foot"><ArrowLink to="/about">About the studio</ArrowLink></Reveal>
         </div>
       </section>
 
@@ -103,7 +103,7 @@ export default function Home() {
               <p>With a background in computer science and experience working with international clients, his work spans branding, website design and development, AI visuals and commercial content.</p>
               <p>At HZ Digital Solutions, that experience comes together in one place: thoughtful creative work, shaped around your business and its next chapter.</p>
               <div className="link-row">
-                <ArrowLink to="/founder">Meet the founder</ArrowLink>
+                <ArrowLink to="/about#founder">Meet the founder</ArrowLink>
                 <a className="text-link" href="https://www.linkedin.com/in/zain-ul-abidin-7b5b76190/" target="_blank" rel="noopener noreferrer"><span>Connect on LinkedIn</span><ArrowUpRight size={16} /></a>
               </div>
             </Reveal>
