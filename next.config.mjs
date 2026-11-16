@@ -1,6 +1,13 @@
 const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
+  // The Company and Founder pages were merged into About; old links keep working.
+  async redirects() {
+    return [
+      { source: '/company', destination: '/about', permanent: true },
+      { source: '/founder', destination: '/about#founder', permanent: true },
+    ]
+  },
   async headers() {
     return [{ source: '/:path*', headers: [
       { key: 'X-Content-Type-Options', value: 'nosniff' },
