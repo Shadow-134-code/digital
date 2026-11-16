@@ -3,8 +3,7 @@
 export const navLinks = [
   ['/work', 'Work'],
   ['/#services', 'Services'],
-  ['/company', 'Company'],
-  ['/founder', 'Founder'],
+  ['/about', 'About'],
   ['/faqs', 'FAQs'],
 ]
 export const contactLink = ['/contact', 'Contact']
