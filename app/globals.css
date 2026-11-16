@@ -645,6 +645,8 @@ button:hover > .play-badge { scale: 1.08; box-shadow: inset 0 1px rgba(255, 255,
 .founder-hero-copy .page-title { margin-top: 26px; }
 .founder-hero-copy .enter-late { display: grid; gap: 14px; margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line); }
 .founder-hero-copy .page-intro { grid-column: auto; }
+/* Meet-the-founder links land on this section, clear of the fixed header. */
+#founder { scroll-margin-top: calc(var(--header-h) + 28px); }
 .founder-role { font-size: 1.02rem; font-weight: 500; color: var(--text); }
 .founder-teaser-copy .founder-role { margin-bottom: 4px; }
 .portrait-caption { position: absolute; left: 16px; bottom: 16px; padding: 8px 12px; border-radius: 6px; line-height: 1.5; background: rgba(13, 12, 11, 0.7); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: var(--text); }
